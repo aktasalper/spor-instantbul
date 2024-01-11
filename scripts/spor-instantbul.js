@@ -1,9 +1,9 @@
 /**
- * @typedef {"branch" | "facility"} Preference
+ * @typedef {"branch" | "facility" | "field"} Preference
  */
 
 /**
- * @typedef {"SELECT_BRANCH" | "SELECT_FACILITY"} MessageAction
+ * @typedef {"SELECT_BRANCH" | "SELECT_FACILITY" | "SELECT_FIELD"} MessageAction
  */
 
 /**
@@ -41,6 +41,9 @@ function handleMessage(message) {
 			break;
 		case "SELECT_FACILITY":
 			changeSelectValue("ddlTesisFiltre", message.payload);
+			break;
+		case "SELECT_FIELD":
+			changeSelectValue("ddlSalonFiltre", message.payload);
 			break;
 		default:
 			break;
