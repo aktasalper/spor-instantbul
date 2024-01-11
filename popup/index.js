@@ -20,6 +20,7 @@ async function initializePopup() {
 		const optionsButton = document.getElementsByTagName("button")[0];
 		optionsButton.addEventListener("click", () => browser.runtime.openOptionsPage());
 
+		/** @type {Record<Preference, string> | null} */
 		const preferences = localStorage.getItem("preferences") ? JSON.parse(localStorage.getItem("preferences")) : null;
 		console.log("\tpreferences", { preferences });
 
@@ -27,16 +28,21 @@ async function initializePopup() {
 			const container = document.getElementsByClassName("preferences")[0];
 			container.classList.remove("hidden");
 
-			const branchTextElement = document.getElementById("preferred-branch");
-			branchTextElement.innerText = preferences.branch.name;
+			/** @type {Preference} */
+			const keys = Object.keys(preferences);
 
-			const button = document.createElement("button");
-			button.innerText = "Seç";
-			button.type = "button";
-			button.addEventListener("click", () => {
-				dispatch(currentTab, { action: "SELECT_BRANCH", payload: preferences.branch.value });
-			});
-			container.appendChild(button);
+			for (const category of keys) {
+				const textElement = document.getElementById(`preferred-${category}`);
+				textElement.innerText = preferences[category].name;
+
+				const button = document.createElement("button");
+				button.innerText = category.toUpperCase() + " Seç";
+				button.type = "button";
+				button.addEventListener("click", () => {
+					dispatch(currentTab, { action: `SELECT_${category.toUpperCase()}`, payload: preferences[category].value });
+				});
+				container.appendChild(button);
+			}
 		}
 	} catch (error) {
 		logError(error);

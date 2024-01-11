@@ -3,7 +3,11 @@ console.group("OPTIONS");
 class SporInstantbulStorage {
 	#key = "preferences";
 	#preferences = {
-		branch: { name: "Tenis", value: "59b7bd71-1aab-4751-8248-7af4a7790f8c" }
+		branch: { name: "Tenis", value: "59b7bd71-1aab-4751-8248-7af4a7790f8c" },
+		facility: {
+			name: "AVCILAR SPOR KOMPLEKSİ",
+			value: "5d4ef42f-e103-431e-94cb-ad5aa5201850"
+		}
 	};
 
 	constructor() {
@@ -21,7 +25,7 @@ class SporInstantbulStorage {
 	}
 
 	/**
-	 * @param {"branch"} key
+	 * @param {Preference} key
 	 * @param {string} value
 	 */
 	setPreference(key, value) {
@@ -36,27 +40,35 @@ class SporInstantbulStorage {
 
 const storage = new SporInstantbulStorage();
 
-const branchSelect = document.getElementsByTagName("select")[0];
+const select = {
+	branch: document.getElementById("branch"),
+	facility: document.getElementById("facility")
+};
 
-console.log("checking if storage has prefereces:", storage.preferences);
-if (storage.preferences.branch) {
-	console.log("current select value:", branchSelect.value);
-	console.log("setting select value:", branchSelect, "to:", storage.preferences.branch);
-	branchSelect.value = storage.preferences.branch.value;
+// Update select values if localStorage preferences exist
+if (storage.preferences) {
+	/** @type {Array<Preference>} */
+	const keys = Object.keys(select);
+
+	for (const category of keys) {
+		console.log("current category:", category);
+		/** @type {HTMLSelectElement} */
+		const element = select[category];
+		console.log({ element, value: element.value, valueToSet: storage.preferences[category] });
+		element.value = storage.preferences[category].value;
+
+		element.addEventListener("change", (e) => {
+			const select = e.target;
+			const selectedOption = select.options[select.selectedIndex].text;
+
+			console.log({ selectedOption });
+
+			console.log("prev preferences:", storage.preferences);
+
+			storage.setPreference(category, { name: selectedOption, value: select.value });
+			console.log("new preferences:", storage.preferences);
+		});
+	}
 }
 
-branchSelect.addEventListener("change", (e) => {
-	const select = e.target;
-	const selectedOption = select.options[select.selectedIndex].text;
-
-	const span = document.getElementById("selected-branch");
-	span.innerText = select.value;
-
-	console.log(selectedOption);
-
-	console.log("prev preferences:", storage.preferences?.branch);
-
-	storage.setPreference("branch", { name: selectedOption, value: select.value });
-	console.log("new preferences:", storage.preferences?.branch);
-});
 console.groupEnd();

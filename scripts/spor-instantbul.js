@@ -1,5 +1,9 @@
 /**
- * @typedef {"SELECT_BRANCH"} MessageAction
+ * @typedef {"branch" | "facility"} Preference
+ */
+
+/**
+ * @typedef {"SELECT_BRANCH" | "SELECT_FACILITY"} MessageAction
  */
 
 /**
@@ -17,15 +21,13 @@ function getSelectSpan(selector) {
 }
 
 /**
- * @param {string} branchVal
+ * @param {string} selector
+ * @param {string} newValue
  */
-function selectBranch(branchVal) {
-	const span = getSelectSpan("select2-ddlBransFiltre-container");
-	console.log("branch span:", span);
-
-	const select = document.getElementById("ddlBransFiltre");
-	console.log("setting select value:", { branchVal, select });
-	select.value = branchVal;
+function changeSelectValue(selector, newValue) {
+	const select = document.getElementById(selector);
+	console.log("setting select value:", { newValue, select });
+	select.value = newValue;
 	select.dispatchEvent(new Event("change"));
 }
 
@@ -35,7 +37,10 @@ function selectBranch(branchVal) {
 function handleMessage(message) {
 	switch (message.action) {
 		case "SELECT_BRANCH":
-			selectBranch(message.payload);
+			changeSelectValue("ddlBransFiltre", message.payload);
+			break;
+		case "SELECT_FACILITY":
+			changeSelectValue("ddlTesisFiltre", message.payload);
 			break;
 		default:
 			break;
@@ -47,8 +52,6 @@ function handleMessage(message) {
 		return;
 	}
 
-	console.info("::content_script initialized");
 	window.hasRun = true;
-
 	browser.runtime.onMessage.addListener(handleMessage);
 })();
