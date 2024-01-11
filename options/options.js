@@ -1,4 +1,3 @@
-console.group("OPTIONS");
 const initalPreferences = {
 	branch: { name: "Tenis", value: "59b7bd71-1aab-4751-8248-7af4a7790f8c" },
 	facility: {
@@ -10,13 +9,13 @@ const initalPreferences = {
 		value: "39ab31e0-78ec-41ab-b866-c4040b357bd4"
 	}
 };
+Object.freeze(initalPreferences);
 
 class SporInstantbulStorage {
 	#key = "preferences";
-	#preferences = initalPreferences;
+	#preferences = structuredClone(initalPreferences);
 
 	constructor() {
-		console.info("::constructor - key exists:", !!localStorage.getItem(this.#key), localStorage.getItem(this.#key));
 		const preferences = localStorage.getItem(this.#key);
 		if (!preferences) {
 			localStorage.setItem(this.#key, JSON.stringify(this.#preferences));
@@ -43,8 +42,32 @@ class SporInstantbulStorage {
 	}
 
 	resetPreferences() {
-		this.#preferences = initalPreferences;
+		this.#preferences = structuredClone(initalPreferences);
 		this.#updateStorage();
+	}
+}
+
+/** @type {Set<string>} */
+const listenedSelects = new Set();
+
+function hydrateSelectsFromStorage() {
+	/** @type {Array<Preference>} */
+	const keys = Object.keys(select);
+
+	for (const category of keys) {
+		/** @type {HTMLSelectElement} */
+		const element = select[category];
+		element.value = storage.preferences[category].value;
+
+		if (!listenedSelects.has(element.id)) {
+			listenedSelects.add(element.id);
+			element.addEventListener("change", (e) => {
+				const select = e.target;
+				const selectedOption = select.options[select.selectedIndex].text;
+
+				storage.setPreference(category, { name: selectedOption, value: select.value });
+			});
+		}
 	}
 }
 
@@ -58,30 +81,10 @@ const select = {
 
 // Update select values if localStorage preferences exist
 if (storage.preferences) {
-	/** @type {Array<Preference>} */
-	const keys = Object.keys(select);
-
-	for (const category of keys) {
-		console.log("current category:", category);
-		/** @type {HTMLSelectElement} */
-		const element = select[category];
-		console.log({ element, value: element.value, valueToSet: storage.preferences[category] });
-		element.value = storage.preferences[category].value;
-
-		element.addEventListener("change", (e) => {
-			const select = e.target;
-			const selectedOption = select.options[select.selectedIndex].text;
-
-			console.log({ selectedOption });
-
-			console.log("prev preferences:", storage.preferences);
-
-			storage.setPreference(category, { name: selectedOption, value: select.value });
-			console.log("new preferences:", storage.preferences);
-		});
-	}
+	hydrateSelectsFromStorage();
 }
 
-document.getElementById("reset").addEventListener("click", () => storage.resetPreferences());
-
-console.groupEnd();
+document.getElementById("reset").addEventListener("click", () => {
+	storage.resetPreferences();
+	hydrateSelectsFromStorage();
+});
