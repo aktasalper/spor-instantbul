@@ -1,0 +1,11 @@
+html,
+body {
+	min-width: 100px;
+	min-height: 200px;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}

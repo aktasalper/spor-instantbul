@@ -11,7 +11,16 @@
 	"content_scripts": [
 		{
 			"matches": ["*://*.spor.istanbul/*"],
-			"js": ["spor-instantbul.js"]
+			"js": ["init.js"]
 		}
-	]
+	],
+	"permissions": ["activeTab"],
+
+	"browser_action": {
+		"default_icon": "icons/x32.png",
+		"default_title": "SPOR INSTANTBUL",
+		"default_popup": "popup/index.html"
+	},
+
+	"web_accessible_resources": ["assets/logo.png", "assets/branding.png"]
 }
