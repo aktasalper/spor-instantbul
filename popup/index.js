@@ -7,11 +7,11 @@ async function initializePopup() {
 		const tabs = await getActiveTabs();
 
 		const currentTab = tabs[0].id;
-		const select = document.getElementsByTagName("select")[0];
 
-		select.addEventListener("change", (e) => {
-			browser.tabs.sendMessage(currentTab, { val: e.target.value });
-		});
+		// browser.tabs.sendMessage(currentTab, { val: e.target.value })
+
+		const optionsButton = document.getElementsByTagName("button")[0];
+		optionsButton.addEventListener("click", () => browser.runtime.openOptionsPage());
 	} catch (error) {
 		logError(error);
 	}
