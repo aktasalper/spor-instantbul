@@ -3,7 +3,7 @@ console.group("OPTIONS");
 class SporInstantbulStorage {
 	#key = "preferences";
 	#preferences = {
-		branch: "select2-ddlBransFiltre-result-gmyu-59b7bd71-1aab-4751-8248-7af4a7790f8c"
+		branch: { name: "Tenis", value: "59b7bd71-1aab-4751-8248-7af4a7790f8c" }
 	};
 
 	constructor() {
@@ -42,16 +42,21 @@ console.log("checking if storage has prefereces:", storage.preferences);
 if (storage.preferences.branch) {
 	console.log("current select value:", branchSelect.value);
 	console.log("setting select value:", branchSelect, "to:", storage.preferences.branch);
-	branchSelect.value = storage.preferences.branch;
+	branchSelect.value = storage.preferences.branch.value;
 }
 
 branchSelect.addEventListener("change", (e) => {
+	const select = e.target;
+	const selectedOption = select.options[select.selectedIndex].text;
+
 	const span = document.getElementById("selected-branch");
-	span.innerText = e.target.value;
+	span.innerText = select.value;
+
+	console.log(selectedOption);
 
 	console.log("prev preferences:", storage.preferences?.branch);
 
-	storage.setPreference("branch", e.target.value);
+	storage.setPreference("branch", { name: selectedOption, value: select.value });
 	console.log("new preferences:", storage.preferences?.branch);
 });
 console.groupEnd();

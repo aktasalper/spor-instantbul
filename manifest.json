@@ -14,17 +14,14 @@
 			"js": ["init.js"]
 		}
 	],
-	"permissions": ["activeTab"],
-
+	"permissions": ["activeTab", "storage"],
 	"browser_action": {
 		"default_icon": "icons/x32.png",
 		"default_title": "SPOR INSTANTBUL",
 		"default_popup": "popup/index.html"
 	},
-
 	"options_ui": {
 		"page": "options/index.html"
 	},
-
 	"web_accessible_resources": ["assets/logo.png", "assets/branding.png"]
 }

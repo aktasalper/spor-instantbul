@@ -9,3 +9,11 @@ body {
 	flex-direction: column;
 	gap: 4px;
 }
+
+.container {
+	gap: 12px;
+}
+
+.hidden {
+	display: none;
+}
