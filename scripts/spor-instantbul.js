@@ -14,21 +14,13 @@
 
 /**
  * @param {string} selector
- * @returns {HTMLSpanElement}
- */
-function getSelectSpan(selector) {
-	return document.querySelector(`span[aria-labelledby="${selector}"]`);
-}
-
-/**
- * @param {string} selector
  * @param {string} newValue
  */
 function changeSelectValue(selector, newValue) {
 	const select = document.getElementById(selector);
-	console.log("setting select value:", { newValue, select });
+
 	select.value = newValue;
-	select.dispatchEvent(new Event("change"));
+	select.dispatchEvent(new Event("change")); // spor.istanbul component listens for "change" event to move to the next step
 }
 
 /**
@@ -46,6 +38,7 @@ function handleMessage(message) {
 			changeSelectValue("ddlSalonFiltre", message.payload);
 			break;
 		default:
+			console.error("spor-instantbul - unhandled action:", message.action);
 			break;
 	}
 }
