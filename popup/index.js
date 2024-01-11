@@ -2,16 +2,19 @@ async function getActiveTabs() {
 	return browser.tabs.query({ active: true, currentWindow: true });
 }
 
-function initializePopup() {
-	getActiveTabs()
-		.then((tabs) => {
-			const select = document.getElementsByTagName("select")[0];
+async function initializePopup() {
+	try {
+		const tabs = await getActiveTabs();
 
-			select.addEventListener("change", (e) => {
-				browser.tabs.sendMessage(tabs[0].id, { val: e.target.value });
-			});
-		})
-		.catch(logError);
+		const currentTab = tabs[0].id;
+		const select = document.getElementsByTagName("select")[0];
+
+		select.addEventListener("change", (e) => {
+			browser.tabs.sendMessage(currentTab, { val: e.target.value });
+		});
+	} catch (error) {
+		logError(error);
+	}
 }
 
 function handleExecutionError(error) {
