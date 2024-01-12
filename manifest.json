@@ -14,7 +14,7 @@
 			"js": ["spor-instantbul.js"]
 		}
 	],
-	"permissions": ["activeTab", "storage"],
+	"permissions": ["activeTab", "storage", "tabs"],
 	"browser_action": {
 		"default_icon": "icons/x32.png",
 		"default_title": "SPOR INSTANTBUL",
@@ -29,5 +29,10 @@
 			"id": "spor-instantbul@aktasalper.com",
 			"strict_min_version": "0.1"
 		}
+	},
+	"background": {
+		"scripts": ["background-script.js"],
+		"persistent": false,
+		"type": "module"
 	}
 }

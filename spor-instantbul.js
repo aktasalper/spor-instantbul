@@ -1,3 +1,4 @@
+console.info("::spor-instantbul.js injected");
 // >>> GLOBAL TYPE DEFINITONS
 /**
  * @typedef {"branch" | "facility" | "field"} Preference
