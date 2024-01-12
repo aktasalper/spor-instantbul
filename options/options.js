@@ -5,8 +5,8 @@ const initalPreferences = {
 		value: "5d4ef42f-e103-431e-94cb-ad5aa5201850"
 	},
 	field: {
-		name: "KAPALI TENİS KORTU 2",
-		value: "39ab31e0-78ec-41ab-b866-c4040b357bd4"
+		name: "AÇIK TENİS KORTU",
+		value: "f2cadde6-efe1-4a44-99d2-c26222a16231"
 	}
 };
 Object.freeze(initalPreferences);
