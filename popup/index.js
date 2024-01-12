@@ -1,3 +1,5 @@
+/** @type {ExtensionStorage} */
+const storage = browser.storage.local;
 let countdownTimeout;
 
 async function getActiveTabs() {
@@ -76,10 +78,10 @@ async function initializePopup() {
 		const optionsButton = document.getElementsByTagName("button")[0];
 		optionsButton.addEventListener("click", () => browser.runtime.openOptionsPage());
 
-		/** @type {Record<Preference, string> | null} */
-		const preferences = localStorage.getItem("preferences") ? JSON.parse(localStorage.getItem("preferences")) : null;
+		const result = await storage.get("preferences");
 
-		if (preferences) {
+		if (result != null && Object.keys(result).length > 0) {
+			const { preferences } = result;
 			const container = document.getElementsByClassName("preferences")[0];
 			container.classList.remove("hidden");
 

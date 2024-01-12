@@ -1,3 +1,47 @@
+/**
+ * @typedef {Object} StorageResults
+ */
+
+/** @typedef {string | Array<string>} KeyQuery */
+
+/**
+ * @callback StorageGetCallback
+ * @param {KeyQuery} keys
+ * @returns {Promise<StorageResults | undefined>}
+ */
+
+/**
+ * @callback StorageSetCallback
+ * @param {Object} keys Key to update, along with its values, e.g.: `{preferences: {branch: "Tennis"}}`
+ * @returns {Promise<void>}
+ */
+
+/**
+ * @callback StorageRemoveCallback
+ * @param {KeyQuery} keys
+ * @returns {Promise<void>}
+ */
+
+/**
+ * @typedef {Object} StorageOnChanged
+ * @property {EventListener} addListener
+ * @property {EventListener} removeListener
+ * @property {() => boolean} hasListener
+ */
+
+/**
+ * @typedef {Object} ExtensionStorage
+ * @property {() => void} clear
+ * @property {StorageGetCallback} get
+ * @property {StorageSetCallback} set
+ * @property {StorageRemoveCallback} remove
+ * @property {() => Promise<void>} clear Removes **all** items from the storage area.
+ * @property {StorageOnChanged} onChanged
+ */
+
+/** @type {ExtensionStorage} */
+const storageLocal = browser.storage.local;
+
 const initalPreferences = {
 	branch: { name: "Tenis", value: "59b7bd71-1aab-4751-8248-7af4a7790f8c" },
 	facility: {
@@ -13,19 +57,29 @@ Object.freeze(initalPreferences);
 
 class SporInstantbulStorage {
 	#key = "preferences";
+	/** @type {typeof initalPreferences} */
 	#preferences = structuredClone(initalPreferences);
 
 	constructor() {
-		const preferences = localStorage.getItem(this.#key);
-		if (!preferences) {
-			localStorage.setItem(this.#key, JSON.stringify(this.#preferences));
-		} else {
-			this.#preferences = JSON.parse(preferences);
-		}
+		storageLocal
+			.get(this.#key)
+			.then((result) => {
+				const isEmptyObj = typeof result === "object" && Object.keys(result).length === 0;
+				if (result == null || isEmptyObj) {
+					storageLocal.set({ [this.#key]: this.#preferences });
+				} else {
+					this.#preferences = { ...result.preferences };
+					hydrateSelectsFromStorage();
+				}
+			})
+			.catch((reason) => console.error(`Could not retrieve "${this.#key}":`, reason));
 	}
 
 	#updateStorage() {
-		localStorage.setItem(this.#key, JSON.stringify(this.#preferences));
+		storageLocal
+			.set({ [this.#key]: this.#preferences })
+			.then()
+			.catch((reason) => console.error(`Could not set "${this.#key}":`, reason));
 	}
 
 	/**
@@ -79,7 +133,7 @@ const select = {
 	field: document.getElementById("field")
 };
 
-// Update select values if localStorage preferences exist
+// Update select values if storageLocal preferences exist
 if (storage.preferences) {
 	hydrateSelectsFromStorage();
 }
