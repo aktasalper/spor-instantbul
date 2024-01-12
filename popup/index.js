@@ -21,7 +21,6 @@ browser.runtime.onMessage.addListener((/** @type {TabStatus} message */ message)
  * @param {DispatchOption} options
  */
 function dispatch(tab, options) {
-	console.log("🚀 ~ dispatch ~ options:", options);
 	browser.tabs.sendMessage(tab, options);
 }
 
@@ -105,10 +104,10 @@ async function initializePopup() {
 			for (const category of keys) {
 				const textElement = document.getElementById(`preferred-${category}`);
 				const container = textElement.parentElement;
-				textElement.innerText = preferences[category].name;
+				textElement.textContent = preferences[category].name;
 
 				const button = document.createElement("button");
-				button.innerText = "Seç";
+				button.textContent = "Seç";
 				button.type = "button";
 				button.addEventListener("click", () => {
 					dispatch(currentTab, { action: `SELECT_${category.toUpperCase()}`, payload: preferences[category].value });
