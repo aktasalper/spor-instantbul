@@ -75,7 +75,7 @@ async function initializePopup() {
 
 		updateCountdown();
 
-		const optionsButton = document.getElementsByTagName("button")[0];
+		const optionsButton = document.getElementById("options");
 		optionsButton.addEventListener("click", () => browser.runtime.openOptionsPage());
 
 		const result = await storage.get("preferences");
