@@ -4,14 +4,25 @@
 const storage = browser.storage.local;
 /** @type {Array<HTMLButtonElement>} */
 const actionButtons = [];
+const automationKey = "automation";
+const automateButton = document.getElementById("automate");
 let countdownTimeout;
 
-browser.runtime.onMessage.addListener((/** @type {TabStatus} message */ message) => {
+browser.runtime.onMessage.addListener(async (/** @type {TabStatus} message */ message) => {
 	if (["loading", "complete"].includes(message)) {
 		if (message === "loading") {
 			actionButtons.forEach((button) => button.setAttribute("disabled", true));
 		} else if (message === "complete") {
-			actionButtons.forEach((button) => button.removeAttribute("disabled"));
+			const { automation } = await getAutomationState();
+			const isAutomationInProgress = automation !== null;
+
+			const buttonsToEnable = actionButtons.filter((b) => (isAutomationInProgress ? b.id !== "automate" : b));
+
+			buttonsToEnable.forEach((button) => button.removeAttribute("disabled"));
+
+			if (isAutomationInProgress) {
+				initiateNextAutomationStep();
+			}
 		}
 	}
 });
@@ -24,8 +35,65 @@ function dispatch(tab, options) {
 	browser.tabs.sendMessage(tab, options);
 }
 
-async function getActiveTabs() {
-	return browser.tabs.query({ active: true, currentWindow: true });
+/** @returns {Promise<number | null>} */
+async function getCurrentTab() {
+	const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+	return tabs[0]?.id ?? null;
+}
+
+/** @returns {Promise<AutomationState>} */
+async function getAutomationState() {
+	return storage.get(automationKey);
+}
+
+/** @param {boolean} shouldBeEnabled */
+function setAutomateButtonEnabled(shouldBeEnabled) {
+	if (shouldBeEnabled) {
+		automateButton.removeAttribute("disabled");
+	} else {
+		automateButton.setAttribute("disabled", true);
+	}
+}
+
+function initiateNextAutomationStep() {
+	getAutomationState()
+		.then((result) => {
+			/** @type {AutomationState} */
+			const currentStep = result.automation;
+
+			let nextStep;
+			switch (currentStep) {
+				case null:
+					nextStep = "branch";
+					break;
+				case "branch":
+					nextStep = "facility";
+					break;
+				case "facility":
+					nextStep = "field";
+					break;
+				case "field":
+				default:
+					nextStep = null;
+			}
+
+			storage.set({ [automationKey]: nextStep });
+			if (currentStep !== null) {
+				getCurrentTab().then((tab) =>
+					storage.get("preferences").then(({ preferences }) => {
+						const action = `SELECT_${currentStep.toUpperCase()}`;
+						const payload = preferences[currentStep].value;
+
+						dispatch(tab, { action, payload });
+					})
+				);
+			}
+		})
+		.catch((e) => console.error("Could not get automation state:", e));
+}
+
+function storageValueExists(result) {
+	return result != null && Object.keys(result).length > 0;
 }
 
 /** @param {number} seconds Time remaining in *seconds* */
@@ -56,6 +124,7 @@ function calculateTimeUntilNextReservationSlot() {
 	if (currentHour >= 8 && currentHour < 22) {
 		targetHour = currentHour + 1;
 	} else {
+		targetDate.setHours(targetDate.getHours() + 24);
 		targetHour = 8;
 	}
 
@@ -83,20 +152,24 @@ async function initializePopup() {
 	console.info("::init popup");
 	clearTimeout(countdownTimeout);
 	try {
-		const tabs = await getActiveTabs();
-		const currentTab = tabs[0].id;
+		const currentTab = await getCurrentTab();
 
 		updateCountdown();
 
-		const optionsButton = document.getElementById("options");
-		optionsButton.addEventListener("click", () => browser.runtime.openOptionsPage());
+		const preferenceStorageData = await storage.get("preferences");
 
-		const result = await storage.get("preferences");
-
-		if (result != null && Object.keys(result).length > 0) {
-			const { preferences } = result;
+		if (storageValueExists(preferenceStorageData)) {
+			const { preferences } = preferenceStorageData;
 			const automationContainer = document.getElementsByClassName("automation")[0];
 			automationContainer.classList.remove("hidden");
+
+			const automateButton = document.getElementById("automate");
+			automateButton.addEventListener("click", () => {
+				storage
+					.set({ [automationKey]: "facility" })
+					.then(() => dispatch(currentTab, { action: "SELECT_BRANCH", payload: preferences.branch.value }));
+			});
+			actionButtons.push(automateButton);
 
 			/** @type {Preference} */
 			const keys = Object.keys(preferences);
@@ -116,8 +189,11 @@ async function initializePopup() {
 				actionButtons.push(button);
 			}
 		}
+
+		const optionsButton = document.getElementById("options");
+		optionsButton.addEventListener("click", () => browser.runtime.openOptionsPage());
 	} catch (error) {
-		logError(error);
+		console.error("Could not initiate pop-up view:", error);
 	}
 }
 
