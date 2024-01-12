@@ -23,7 +23,7 @@
 	"options_ui": {
 		"page": "options/index.html"
 	},
-	"web_accessible_resources": ["assets/logo.png", "assets/branding.png"],
+	"web_accessible_resources": ["assets/*.png"],
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "spor-instantbul@aktasalper.com",

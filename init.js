@@ -6,7 +6,7 @@ if (!favicon) {
 	document.head.appendChild(favicon);
 }
 
-favicon.href = "https://i.imgur.com/fRMQekW.png";
+favicon.href = browser.runtime.getURL("assets/logo.png");
 
 const branding = document.getElementsByClassName("logo-default")[0];
-branding.src = "https://i.imgur.com/rVruxf8.png";
+branding.src = browser.runtime.getURL("assets/branding.png");
