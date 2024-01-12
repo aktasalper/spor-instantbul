@@ -27,6 +27,7 @@ function changeSelectValue(selector, newValue) {
  * @param {DispatchOption} message
  */
 function handleMessage(message) {
+	console.log("message received:", message);
 	switch (message.action) {
 		case "SELECT_BRANCH":
 			changeSelectValue("ddlBransFiltre", message.payload);
@@ -50,4 +51,8 @@ function handleMessage(message) {
 
 	window.hasRun = true;
 	browser.runtime.onMessage.addListener(handleMessage);
+	window.addEventListener("unload", () => browser.runtime.sendMessage("UNLOAD"));
+	window.addEventListener("load", () => {
+		console.log("DOM LOADED!'!!!!");
+	});
 })();

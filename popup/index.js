@@ -2,6 +2,12 @@
 const storage = browser.storage.local;
 let countdownTimeout;
 
+browser.runtime.onMessage.addListener((message) => {
+	if (message === "UNLOAD") {
+		browser.runtime.reload();
+	}
+});
+
 async function getActiveTabs() {
 	return browser.tabs.query({ active: true, currentWindow: true });
 }
