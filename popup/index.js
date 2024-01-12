@@ -61,6 +61,7 @@ function initiateNextAutomationStep() {
 			/** @type {AutomationState} */
 			const currentStep = result.automation;
 
+			/** @type {AutomationState} */
 			let nextStep;
 			switch (currentStep) {
 				case null:
@@ -73,20 +74,31 @@ function initiateNextAutomationStep() {
 					nextStep = "field";
 					break;
 				case "field":
+					nextStep = "reservation";
+					break;
+				case "reservation":
+					nextStep = "to_cart";
+					break;
+				case "to_cart":
 				default:
 					nextStep = null;
 			}
 
 			storage.set({ [automationKey]: nextStep });
 			if (currentStep !== null) {
-				getCurrentTab().then((tab) =>
-					storage.get("preferences").then(({ preferences }) => {
-						const action = `SELECT_${currentStep.toUpperCase()}`;
-						const payload = preferences[currentStep].value;
+				getCurrentTab().then((tab) => {
+					if (["branch", "facility", "field"].includes(currentStep)) {
+						storage.get("preferences").then(({ preferences }) => {
+							const action = `SELECT_${currentStep.toUpperCase()}`;
+							const payload = preferences[currentStep].value;
 
-						dispatch(tab, { action, payload });
-					})
-				);
+							dispatch(tab, { action, payload });
+						});
+					} else {
+						const action = `ADD_${currentStep.toUpperCase()}`;
+						getCurrentTab().then((tab) => dispatch(tab, { action }));
+					}
+				});
 			}
 		})
 		.catch((e) => console.error("Could not get automation state:", e));
