@@ -1,3 +1,4 @@
+// >>> GLOBAL TYPE DEFINITONS
 /**
  * @typedef {"branch" | "facility" | "field"} Preference
  */
@@ -12,6 +13,7 @@
  * @property {string} payload
  */
 
+// >>> VARIABLES AND INITIAL MODIFICATIONS
 let favicon = document.querySelector("link[rel~='icon']");
 if (!favicon) {
 	favicon = document.createElement("link");
@@ -24,8 +26,10 @@ favicon.href = browser.runtime.getURL("assets/logo.png");
 const branding = document.getElementsByClassName("logo-default")[0];
 branding.src = browser.runtime.getURL("assets/branding.png");
 
+// >>> LISTENERS
 browser.runtime.onMessage.addListener(handleMessage);
 
+// >>> FUNCTIONS
 /**
  * @param {string} selector
  * @param {string} newValue
