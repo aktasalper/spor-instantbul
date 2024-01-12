@@ -2,12 +2,6 @@
 const storage = browser.storage.local;
 let countdownTimeout;
 
-browser.runtime.onMessage.addListener((message) => {
-	if (message === "UNLOAD") {
-		browser.runtime.reload();
-	}
-});
-
 async function getActiveTabs() {
 	return browser.tabs.query({ active: true, currentWindow: true });
 }
@@ -112,12 +106,4 @@ async function initializePopup() {
 	}
 }
 
-function handleExecutionError(error) {
-	console.error(`Failed to initialize pop-up script: ${error.message}`);
-}
-
-function logError(error) {
-	console.error(`Could not execute "spor-instantbul.js": ${error}`);
-}
-
-browser.tabs.executeScript({ file: "/scripts/spor-instantbul.js" }).then(initializePopup).catch(handleExecutionError);
+initializePopup();
