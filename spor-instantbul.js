@@ -27,16 +27,66 @@ branding.src = browser.runtime.getURL("assets/branding.png");
 
 /** @type {ExtensionStorage} */
 const storage = browser.storage.local;
-storage.get("automation").then((result) => {
-	if (result == null || Object.keys(result).length === 0) {
+storage.get().then((result) => {
+	const { automation, preferences } = result;
+	if (automation == null || Object.keys(automation).length === 0) {
 		storage.set({ automation: null });
+	} else {
+		const isAutomationInProgress = automation !== null;
+
+		if (isAutomationInProgress) {
+			initiateNextAutomationStep(automation, preferences);
+		}
 	}
 });
 
 // >>> LISTENERS
-browser.runtime.onMessage.addListener(handleMessage);
+browser.runtime.onMessage.addListener(handleDispatch);
 
 // >>> FUNCTIONS
+/**
+ * @param {AutomationState} currentStep
+ * @param {PreferenceObject} preferences
+ */
+function initiateNextAutomationStep(currentStep, preferences) {
+	/** @type {AutomationState} */
+	let nextStep;
+	switch (currentStep) {
+		case null:
+			nextStep = "branch";
+			break;
+		case "branch":
+			nextStep = "facility";
+			break;
+		case "facility":
+			nextStep = "field";
+			break;
+		case "field":
+			nextStep = "reservation";
+			break;
+		case "reservation":
+			nextStep = "to_cart";
+			break;
+		case "to_cart":
+		default:
+			nextStep = null;
+	}
+
+	storage.set({ automation: nextStep });
+	if (currentStep !== null) {
+		const selectionSteps = ["branch", "facility", "field"];
+		if (selectionSteps.includes(currentStep)) {
+			const action = `SELECT_${currentStep.toUpperCase()}`;
+			const payload = preferences[currentStep].value;
+
+			handleDispatch({ action, payload });
+		} else {
+			const action = `ADD_${currentStep.toUpperCase()}`;
+			handleDispatch({ action });
+		}
+	}
+}
+
 /**
  * @param {string} selector
  * @param {string} newValue
@@ -80,7 +130,7 @@ function addToCart() {
 }
 
 /** @param {DispatchOption} message */
-function handleMessage(message) {
+function handleDispatch(message) {
 	switch (message.action) {
 		case "SELECT_BRANCH":
 			changeSelectValue("ddlBransFiltre", message.payload);

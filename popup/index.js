@@ -8,21 +8,17 @@ const automationKey = "automation";
 const automateButton = document.getElementById("automate");
 let countdownTimeout;
 
-browser.runtime.onMessage.addListener(async (/** @type {TabStatus} message */ message) => {
+browser.runtime.onMessage.addListener((message) => {
 	if (["loading", "complete"].includes(message)) {
 		if (message === "loading") {
 			actionButtons.forEach((button) => button.setAttribute("disabled", true));
 		} else if (message === "complete") {
-			const { automation } = await getAutomationState();
-			const isAutomationInProgress = automation !== null;
+			storage.get(automationKey).then(({ automation }) => {
+				const isAutomationInProgress = automation !== null;
 
-			const buttonsToEnable = actionButtons.filter((b) => (isAutomationInProgress ? b.id !== "automate" : b));
-
-			buttonsToEnable.forEach((button) => button.removeAttribute("disabled"));
-
-			if (isAutomationInProgress) {
-				initiateNextAutomationStep();
-			}
+				const buttonsToEnable = actionButtons.filter((b) => (isAutomationInProgress ? b.id !== "automate" : b));
+				buttonsToEnable.forEach((button) => button.removeAttribute("disabled"));
+			});
 		}
 	}
 });
@@ -41,11 +37,6 @@ async function getCurrentTab() {
 	return tabs[0]?.id ?? null;
 }
 
-/** @returns {Promise<AutomationState>} */
-async function getAutomationState() {
-	return storage.get(automationKey);
-}
-
 /** @param {boolean} shouldBeEnabled */
 function setAutomateButtonEnabled(shouldBeEnabled) {
 	if (shouldBeEnabled) {
@@ -53,55 +44,6 @@ function setAutomateButtonEnabled(shouldBeEnabled) {
 	} else {
 		automateButton.setAttribute("disabled", true);
 	}
-}
-
-function initiateNextAutomationStep() {
-	getAutomationState()
-		.then((result) => {
-			/** @type {AutomationState} */
-			const currentStep = result.automation;
-
-			/** @type {AutomationState} */
-			let nextStep;
-			switch (currentStep) {
-				case null:
-					nextStep = "branch";
-					break;
-				case "branch":
-					nextStep = "facility";
-					break;
-				case "facility":
-					nextStep = "field";
-					break;
-				case "field":
-					nextStep = "reservation";
-					break;
-				case "reservation":
-					nextStep = "to_cart";
-					break;
-				case "to_cart":
-				default:
-					nextStep = null;
-			}
-
-			storage.set({ [automationKey]: nextStep });
-			if (currentStep !== null) {
-				getCurrentTab().then((tab) => {
-					if (["branch", "facility", "field"].includes(currentStep)) {
-						storage.get("preferences").then(({ preferences }) => {
-							const action = `SELECT_${currentStep.toUpperCase()}`;
-							const payload = preferences[currentStep].value;
-
-							dispatch(tab, { action, payload });
-						});
-					} else {
-						const action = `ADD_${currentStep.toUpperCase()}`;
-						getCurrentTab().then((tab) => dispatch(tab, { action }));
-					}
-				});
-			}
-		})
-		.catch((e) => console.error("Could not get automation state:", e));
 }
 
 function storageValueExists(result) {

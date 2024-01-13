@@ -1,6 +1,4 @@
-/**
- * @typedef {Object} StorageResults
- */
+/** @typedef {Object} StorageResults */
 
 /** @typedef {string | Array<string>} KeyQuery */
 
@@ -54,10 +52,11 @@ const initalPreferences = {
 	}
 };
 Object.freeze(initalPreferences);
+/** @typedef {typeof initalPreferences} PreferenceObject */
 
 class SporInstantbulStorage {
 	#key = "preferences";
-	/** @type {typeof initalPreferences} */
+	/** @type {PreferenceObject} */
 	#preferences = structuredClone(initalPreferences);
 
 	constructor() {
