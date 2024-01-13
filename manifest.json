@@ -26,8 +26,7 @@
 	"web_accessible_resources": ["assets/*.png"],
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "spor-instantbul@aktasalper.com",
-			"strict_min_version": "0.1"
+			"id": "spor-instantbul@aktasalper.com"
 		}
 	},
 	"background": {
