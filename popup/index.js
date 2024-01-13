@@ -13,10 +13,8 @@ browser.runtime.onMessage.addListener((message) => {
 		if (message === "loading") {
 			actionButtons.forEach((button) => button.setAttribute("disabled", true));
 		} else if (message === "complete") {
-			storage.get(automationKey).then(({ automation }) => {
-				const isAutomationInProgress = automation !== null;
-
-				const buttonsToEnable = actionButtons.filter((b) => (isAutomationInProgress ? b.id !== "automate" : b));
+			getIsAutomationInProgress.then((bool) => {
+				const buttonsToEnable = actionButtons.filter((b) => (bool ? b.id !== "automate" : b));
 				buttonsToEnable.forEach((button) => button.removeAttribute("disabled"));
 			});
 		}
@@ -35,6 +33,11 @@ function dispatch(tab, options) {
 async function getCurrentTab() {
 	const tabs = await browser.tabs.query({ active: true, currentWindow: true });
 	return tabs[0]?.id ?? null;
+}
+
+async function getIsAutomationInProgress() {
+	const result = await storage.get(automationKey);
+	return result.automation != null;
 }
 
 /** @param {boolean} shouldBeEnabled */
@@ -118,6 +121,11 @@ async function initializePopup() {
 			automationContainer.classList.remove("hidden");
 
 			const automateButton = document.getElementById("automate");
+			const isAutomationInProgress = await getIsAutomationInProgress();
+
+			if (isAutomationInProgress) {
+				automateButton.setAttribute("disabled", true);
+			}
 			automateButton.addEventListener("click", () => {
 				storage
 					.set({ [automationKey]: "facility" })

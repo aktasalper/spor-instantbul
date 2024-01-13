@@ -81,8 +81,8 @@ function initiateNextAutomationStep(currentStep, preferences) {
 
 			handleDispatch({ action, payload });
 		} else {
-			const action = `ADD_${currentStep.toUpperCase()}`;
-			handleDispatch({ action });
+			// const action = `ADD_${currentStep.toUpperCase()}`;
+			// handleDispatch({ action });
 		}
 	}
 }
