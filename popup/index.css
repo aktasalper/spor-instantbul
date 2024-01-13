@@ -2,18 +2,57 @@ html,
 body {
 	min-width: 100px;
 	min-height: 200px;
+
+	max-width: 600px;
+}
+
+section {
+	border: 2px dashed var(--primary-600);
+	border-radius: var(--radius-s);
+	padding: var(--small);
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	gap: var(--small);
 }
 
 .column {
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
+	gap: var(--small);
+}
+
+.automation {
+	align-items: center;
 }
 
 .container {
-	gap: 12px;
+	gap: var(--medium);
 }
 
-.hidden {
-	display: none;
+table {
+	border-collapse: collapse;
+	border-radius: var(--radius-l);
+	text-align: left;
+}
+
+table,
+th,
+td {
+	border: 2px solid var(--primary-600);
+}
+
+th,
+td {
+	padding: var(--small);
+}
+
+th {
+	min-width: 100px;
+}
+
+td {
+	background-color: var(--primary-800);
 }

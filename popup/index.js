@@ -117,7 +117,7 @@ async function initializePopup() {
 
 		if (storageValueExists(preferenceStorageData)) {
 			const { preferences } = preferenceStorageData;
-			const automationContainer = document.getElementsByClassName("automation")[0];
+			const automationContainer = document.getElementsByClassName("column hidden")[0];
 			automationContainer.classList.remove("hidden");
 
 			const automateButton = document.getElementById("automate");
@@ -138,17 +138,7 @@ async function initializePopup() {
 
 			for (const category of keys) {
 				const textElement = document.getElementById(`preferred-${category}`);
-				const container = textElement.parentElement;
 				textElement.textContent = preferences[category].name;
-
-				const button = document.createElement("button");
-				button.textContent = "Seç";
-				button.type = "button";
-				button.addEventListener("click", () => {
-					dispatch(currentTab, { action: `SELECT_${category.toUpperCase()}`, payload: preferences[category].value });
-				});
-				container.appendChild(button);
-				actionButtons.push(button);
 			}
 		}
 
