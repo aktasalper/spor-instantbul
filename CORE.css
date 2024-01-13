@@ -1,0 +1,253 @@
+/* https://www.figma.com/community/file/817513323632105907/core-lite-v3-3-0-design-system-starter-kit */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap");
+
+:root {
+	--white: #f8f8f8;
+	--black: #111111;
+
+	--primary-100: #ebecff;
+	--primary-200: #d3d5fe;
+	--primary-300: #a7acfd;
+	--primary-400: #7b82fc;
+	--primary-500: #4f59fb;
+	--primary-600: #333cde;
+	--primary-700: #262da7;
+	--primary-800: #191e6f;
+	--primary-900: #0d0f38;
+
+	--red-100: #ffe7e7;
+	--red-200: #ffc9c9;
+	--red-300: #ff9494;
+	--red-400: #ff5e5e;
+	--red-500: #ff2828;
+	--red-600: #e20c0c;
+	--red-700: #aa0909;
+	--red-800: #710606;
+	--red-900: #390303;
+
+	--green-100: #e8f4e6;
+	--green-200: #cce7c7;
+	--green-300: #99d090;
+	--green-400: #66b858;
+	--green-500: #34a120;
+	--green-600: #178404;
+	--green-700: #116303;
+	--green-800: #0c4202;
+	--green-900: #062101;
+
+	--yellow-100: #fef4e8;
+	--yellow-200: #fde6cb;
+	--yellow-300: #facd97;
+	--yellow-400: #f8b462;
+	--yellow-500: #f59c2e;
+	--yellow-600: #d97f12;
+	--yellow-700: #a35f0d;
+	--yellow-800: #a35f0d;
+	--yellow-900: #362004;
+
+	--neutral-100: #f8f8f8;
+	--neutral-200: #efefef;
+	--neutral-300: #dfdfdf;
+	--neutral-400: #cecece;
+	--neutral-500: #bebebe;
+	--neutral-600: #a2a2a2;
+	--neutral-700: #797979;
+	--neutral-800: #515151;
+	--neutral-900: #282828;
+
+	--small: 8px;
+	--medium: 16px;
+	--large: 24px;
+	--x-large: 32px;
+
+	--radius-s: 7px;
+	--radius-m: 10px;
+	--radius-l: 15px;
+}
+
+* {
+	font-family: "Inter", serif;
+	color: var(--white);
+	box-sizing: border-box;
+}
+
+body {
+	background-color: var(--primary-900);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	all: unset;
+}
+
+h1 {
+	font-size: 55px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 130%; /* 71.5px */
+}
+
+h2 {
+	font-size: 44px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 130%; /* 57.2px */
+}
+
+h3 {
+	font-size: 35px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 130%; /* 45.5px */
+}
+
+h4 {
+	font-size: 28px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 140%; /* 39.2px */
+}
+
+h5 {
+	font-size: 23px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 130%; /* 29.9px */
+}
+
+h6 {
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 130%; /* 26px */
+}
+
+button {
+	display: inline-flex;
+	padding: var(--medium) var(--x-large);
+	justify-content: center;
+	align-items: center;
+	gap: var(--small);
+
+	background-color: var(--primary-500);
+	color: var(--white);
+
+	border-radius: none;
+	border: none;
+
+	cursor: pointer;
+
+	transition: background-color 250ms ease;
+}
+
+button:hover {
+	background-color: var(--primary-700);
+}
+
+button:focus {
+	background-color: var(--primary-800) !important;
+}
+
+button:disabled {
+	color: var(--neutral-700) !important;
+	background-color: var(--neutral-400) !important;
+}
+
+.headline {
+	font-size: 44px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 130%; /* 57.2px */
+}
+
+span,
+p,
+.body-text {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%; /* 27px */
+}
+
+a,
+.textlink {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 150%; /* 27px */
+	text-decoration-line: underline;
+}
+
+label,
+.form-label {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 150%; /* 27px */
+}
+
+.form-hint {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%; /* 24px */
+}
+
+button,
+.button-text {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 130%; /* 23.4px */
+}
+
+.notification {
+	display: flex;
+	flex-direction: row;
+	gap: var(--large);
+
+	padding: var(--medium);
+
+	border: 2px solid var(--black);
+	border-radius: var(--radius-s);
+}
+
+.notification * {
+	color: var(--neutral-900) !important;
+}
+
+.notification.info {
+	background-color: var(--neutral-200);
+	border-color: var(--neutral-900);
+}
+
+.notification.success {
+	background-color: var(--green-300);
+	border-color: var(--green-500);
+}
+
+.notification.warning {
+	background-color: var(--yellow-300);
+	border-color: var(--yellow-500);
+}
+
+.notification.error {
+	background-color: var(--red-300);
+	border-color: var(--red-500);
+}
+
+.notification .icon {
+	width: 32px;
+	height: 32px;
+}
+
+.notification .content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--small);
+}
