@@ -99,11 +99,17 @@ function changeSelectValue(selector, newValue) {
 
 function addReservation() {
 	const reservationLinks = document.querySelectorAll(".form-group > .well.wellPlus > a[title='Rezervasyon']");
-	const latestReservation = reservationLinks[reservationLinks.length - 1];
-	latestReservation.removeAttribute("onclick");
-	latestReservation.click();
 
-	chooseReservationType();
+	if (reservationLinks.length) {
+		const latestReservation = reservationLinks[reservationLinks.length - 1];
+		latestReservation.removeAttribute("onclick");
+		latestReservation.click();
+
+		chooseReservationType();
+	} else {
+		resetAutomationState();
+		alert("Arama kriterleriniz kapsamında alınabilir rezervasyon bulunamadı!");
+	}
 }
 
 function chooseReservationType() {
@@ -127,6 +133,10 @@ function addToCart() {
 	markAsRead();
 	const addToCartButton = document.getElementById("pageContent_lbtnSepeteEkle");
 	addToCartButton.click();
+}
+
+function resetAutomationState() {
+	storage.set({ automation: null });
 }
 
 /** @param {DispatchOption} message */
