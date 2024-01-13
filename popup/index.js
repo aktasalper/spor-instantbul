@@ -29,10 +29,10 @@ function dispatch(tab, options) {
 	browser.tabs.sendMessage(tab, options);
 }
 
-/** @returns {Promise<number | null>} */
+/** @returns {Promise<Object | null>} */
 async function getCurrentTab() {
 	const tabs = await browser.tabs.query({ active: true, currentWindow: true });
-	return tabs[0]?.id ?? null;
+	return tabs[0] ?? null;
 }
 
 async function getIsAutomationInProgress() {
@@ -110,6 +110,7 @@ async function initializePopup() {
 	clearTimeout(countdownTimeout);
 	try {
 		const currentTab = await getCurrentTab();
+		console.log("🚀 ~ initializePopup ~ currentTab:", currentTab);
 
 		updateCountdown();
 
@@ -122,14 +123,16 @@ async function initializePopup() {
 
 			const automateButton = document.getElementById("automate");
 			const isAutomationInProgress = await getIsAutomationInProgress();
+			const isInReservationPage = currentTab?.url?.endsWith("/satiskiralik");
 
-			if (isAutomationInProgress) {
+			if (isAutomationInProgress || !isInReservationPage) {
 				automateButton.setAttribute("disabled", true);
 			}
+
 			automateButton.addEventListener("click", () => {
 				storage
 					.set({ [automationKey]: "facility" })
-					.then(() => dispatch(currentTab, { action: "SELECT_BRANCH", payload: preferences.branch.value }));
+					.then(() => dispatch(currentTab?.id, { action: "SELECT_BRANCH", payload: preferences.branch.value }));
 			});
 			actionButtons.push(automateButton);
 

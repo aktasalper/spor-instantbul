@@ -157,6 +157,13 @@ button:focus {
 button:disabled {
 	color: var(--neutral-700) !important;
 	background-color: var(--neutral-400) !important;
+	cursor: not-allowed !important;
+}
+
+button:disabled * {
+	color: var(--neutral-700) !important;
+	fill: var(--neutral-700) !important;
+	stroke: var(--neutral-700) !important;
 }
 
 .headline {
