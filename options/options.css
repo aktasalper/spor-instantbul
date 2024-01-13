@@ -1,0 +1,33 @@
+html,
+body {
+	min-height: 100vh;
+
+	background-color: var(--neutral-100);
+	color: var(--black) !important;
+}
+
+body {
+	padding: var(--medium);
+}
+
+main {
+	gap: var(--medium);
+	align-items: flex-start;
+}
+
+button {
+	background-color: var(--red-500) !important;
+}
+
+button:hover {
+	background-color: var(--red-700) !important;
+}
+
+button:focus {
+	background-color: var(--red-800) !important;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+}
