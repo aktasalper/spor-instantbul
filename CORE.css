@@ -195,6 +195,60 @@ select {
 	transition: border-color 250ms ease;
 }
 
+input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+	height: 0 !important;
+	width: 0 !important;
+}
+
+.checkmark {
+	position: relative;
+	height: 25px;
+	width: 25px;
+	margin-right: var(--small);
+
+	border: 2px solid var(--neutral-900);
+	border-radius: var(--radius-s);
+
+	background-color: var(--white);
+
+	transition: background-color 250ms ease;
+}
+
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+
+	left: 7px;
+	top: 3px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+label:hover input ~ .checkmark {
+	background-color: var(--primary-200);
+}
+
+label:focus input ~ .checkmark,
+label:active input ~ .checkmark {
+	border-color: var(--primary-500);
+}
+
+label input:checked ~ .checkmark {
+	background-color: var(--primary-500);
+}
+
+label input:checked ~ .checkmark:after {
+	display: block;
+}
+
 option:checked {
 	font-weight: bold;
 }
@@ -242,6 +296,8 @@ a,
 	font-weight: 700;
 	line-height: 150%; /* 27px */
 	text-decoration-line: underline;
+
+	color: var(--primary-500);
 }
 
 label,
@@ -251,6 +307,11 @@ label,
 	font-weight: 700;
 	line-height: 150%; /* 27px */
 	color: var(--neutral-900);
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .form-hint {
