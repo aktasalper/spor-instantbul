@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "SPOR INSTANTBUL",
-	"version": "0.2",
+	"version": "0.2.2",
 	"description": "Helps with getting quick reservations through 'https://online.spor.istanbul/'",
 	"homepage_url": "https://github.com/aktasalper/spor-instantbul",
 	"icons": {

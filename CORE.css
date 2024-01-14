@@ -154,6 +154,18 @@ button:focus {
 	background-color: var(--primary-800) !important;
 }
 
+button.danger {
+	background-color: var(--red-500) !important;
+}
+
+button.danger:hover {
+	background-color: var(--red-700) !important;
+}
+
+button.danger:focus {
+	background-color: var(--red-800) !important;
+}
+
 button:disabled {
 	color: var(--neutral-700) !important;
 	background-color: var(--neutral-400) !important;

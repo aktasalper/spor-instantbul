@@ -15,18 +15,6 @@ main {
 	align-items: flex-start;
 }
 
-button {
-	background-color: var(--red-500) !important;
-}
-
-button:hover {
-	background-color: var(--red-700) !important;
-}
-
-button:focus {
-	background-color: var(--red-800) !important;
-}
-
 .column {
 	display: flex;
 	flex-direction: column;
