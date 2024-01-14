@@ -1,45 +1,8 @@
-/** @typedef {Object} StorageResults */
+const require = () => {};
+const t = require("../typedefs");
 
-/** @typedef {string | Array<string>} KeyQuery */
-
-/**
- * @callback StorageGetCallback
- * @param {KeyQuery} keys
- * @returns {Promise<StorageResults | undefined>}
- */
-
-/**
- * @callback StorageSetCallback
- * @param {Object} keys Key to update, along with its values, e.g.: `{preferences: {branch: "Tennis"}}`
- * @returns {Promise<void>}
- */
-
-/**
- * @callback StorageRemoveCallback
- * @param {KeyQuery} keys
- * @returns {Promise<void>}
- */
-
-/**
- * @typedef {Object} StorageOnChanged
- * @property {EventListener} addListener
- * @property {EventListener} removeListener
- * @property {() => boolean} hasListener
- */
-
-/**
- * @typedef {Object} ExtensionStorage
- * @property {() => void} clear
- * @property {StorageGetCallback} get
- * @property {StorageSetCallback} set
- * @property {StorageRemoveCallback} remove
- * @property {() => Promise<void>} clear Removes **all** items from the storage area.
- * @property {StorageOnChanged} onChanged
- */
-
-/** @type {ExtensionStorage} */
+/** @type {t.ExtensionStorage} */
 const storageLocal = browser.storage.local;
-
 const initalPreferences = {
 	branch: { name: "Tenis", value: "59b7bd71-1aab-4751-8248-7af4a7790f8c" },
 	facility: {
@@ -52,11 +15,18 @@ const initalPreferences = {
 	}
 };
 Object.freeze(initalPreferences);
-/** @typedef {typeof initalPreferences} PreferenceObject */
+
+/** @type {Set<string>} */
+const listenedSelects = new Set();
+const select = {
+	branch: document.getElementById("branch"),
+	facility: document.getElementById("facility"),
+	field: document.getElementById("field")
+};
 
 class SporInstantbulStorage {
 	#key = "preferences";
-	/** @type {PreferenceObject} */
+	/** @type {t.PreferenceObject} */
 	#preferences = structuredClone(initalPreferences);
 
 	constructor() {
@@ -82,7 +52,7 @@ class SporInstantbulStorage {
 	}
 
 	/**
-	 * @param {Preference} key
+	 * @param {t.Preference} key
 	 * @param {string} value
 	 */
 	setPreference(key, value) {
@@ -99,12 +69,10 @@ class SporInstantbulStorage {
 		this.#updateStorage();
 	}
 }
-
-/** @type {Set<string>} */
-const listenedSelects = new Set();
+const storage = new SporInstantbulStorage();
 
 function hydrateSelectsFromStorage() {
-	/** @type {Array<Preference>} */
+	/** @type {Array<t.Preference>} */
 	const keys = Object.keys(select);
 
 	for (const category of keys) {
@@ -123,14 +91,6 @@ function hydrateSelectsFromStorage() {
 		}
 	}
 }
-
-const storage = new SporInstantbulStorage();
-
-const select = {
-	branch: document.getElementById("branch"),
-	facility: document.getElementById("facility"),
-	field: document.getElementById("field")
-};
 
 // Update select values if storageLocal preferences exist
 if (storage.preferences) {

@@ -1,6 +1,9 @@
+const require = () => {};
+const t = require("../typedefs");
+
 /** @typedef {"loading" | "complete"} TabStatus */
 
-/** @type {ExtensionStorage} */
+/** @type {t.ExtensionStorage} */
 const storage = browser.storage.local;
 /** @type {Array<HTMLButtonElement>} */
 const actionButtons = [];
@@ -23,7 +26,7 @@ browser.runtime.onMessage.addListener((message) => {
 
 /**
  * @param {string} tabID
- * @param {DispatchOption} options
+ * @param {t.DispatchOption} options
  */
 function dispatch(tab, options) {
 	browser.tabs.sendMessage(tab, options);

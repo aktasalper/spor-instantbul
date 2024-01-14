@@ -1,15 +1,6 @@
 console.info("::spor-instantbul.js injected");
-// >>> GLOBAL TYPE DEFINITONS
-/** @typedef {"branch" | "facility" | "field"} Preference */
-/** @typedef {"reservation" | "to_cart"} ReservationProcess */
-/** @typedef {Preference | ReservationProcess | null} AutomationState */
-/** @typedef {"SELECT_BRANCH" | "SELECT_FACILITY" | "SELECT_FIELD" | "ADD_RESERVATION" | "ADD_TO_CART"} MessageAction */
-
-/**
- * @typedef {Object} DispatchOption
- * @property {MessageAction} action
- * @property {string | undefined} payload
- */
+const require = () => {};
+const t = require("./typedefs");
 
 // >>> VARIABLES AND INITIAL MODIFICATIONS
 let reservationOptionsContainerExistsTimeout;
@@ -25,7 +16,7 @@ favicon.href = browser.runtime.getURL("assets/logo.png");
 const branding = document.getElementsByClassName("logo-default")[0];
 branding.src = browser.runtime.getURL("assets/branding.png");
 
-/** @type {ExtensionStorage} */
+/** @type {t.ExtensionStorage} */
 const storage = browser.storage.local;
 storage.get().then((result) => {
 	const { automation, preferences } = result;
@@ -45,11 +36,11 @@ browser.runtime.onMessage.addListener(handleDispatch);
 
 // >>> FUNCTIONS
 /**
- * @param {AutomationState} currentStep
- * @param {PreferenceObject} preferences
+ * @param {t.AutomationState} currentStep
+ * @param {t.PreferenceObject} preferences
  */
 function initiateNextAutomationStep(currentStep, preferences) {
-	/** @type {AutomationState} */
+	/** @type {t.AutomationState} */
 	let nextStep;
 	switch (currentStep) {
 		case null:
@@ -139,7 +130,7 @@ function resetAutomationState() {
 	storage.set({ automation: null });
 }
 
-/** @param {DispatchOption} message */
+/** @param {t.DispatchOption} message */
 function handleDispatch(message) {
 	switch (message.action) {
 		case "SELECT_BRANCH":
