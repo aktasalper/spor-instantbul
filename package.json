@@ -1,7 +1,7 @@
 {
 	"name": "spor-instantbul",
-	"displayName": "Spor instantbul",
-	"version": "0.4",
+	"displayName": "SPOR INSTANTBUL",
+	"version": "0.5",
 	"description": "Helps with getting quick reservations through 'https://online.spor.istanbul/'",
 	"author": "Alper Aktaş <contact@aktasalper.com>",
 	"homepage": "https://github.com/aktasalper/spor-instantbul",
@@ -23,7 +23,10 @@
 		"@types/node": "20.9.0",
 		"@types/react": "18.2.37",
 		"@types/react-dom": "18.2.15",
+		"autoprefixer": "^10.4.17",
+		"postcss": "^8.4.33",
 		"prettier": "3.0.3",
+		"tailwindcss": "^3.4.1",
 		"typescript": "5.2.2"
 	},
 	"manifest": {

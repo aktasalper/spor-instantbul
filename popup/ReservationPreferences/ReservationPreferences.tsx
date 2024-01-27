@@ -5,6 +5,7 @@ import { FacilitySelect } from "./FacilitySelect";
 import { FieldSelect } from "./FieldSelect";
 
 import { initialReservationPreferences, storageKey } from "~constant";
+import { Table } from "~components/Table";
 
 export function ReservationPreferences() {
 	const [preferenceState, setPreferenceState] = useStorage<PreferenceObject>(
@@ -13,47 +14,49 @@ export function ReservationPreferences() {
 	);
 
 	return (
-		<table>
-			<tr>
-				<th>
-					<h5>Branş</h5>
-				</th>
-				<td>
-					<BranchSelect value={preferenceState.branch.value} handleChange={() => undefined} />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h5>Salon</h5>
-				</th>
-				<td>
-					<FacilitySelect
-						value={preferenceState.facility.value}
-						handleChange={(facility) => {
-							setPreferenceState((prev) => ({
-								...prev,
-								facility
-							}));
-						}}
-					/>
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<h5>Tesis</h5>
-				</th>
-				<td>
-					<FieldSelect
-						value={preferenceState.field.value}
-						handleChange={(field) => {
-							setPreferenceState((prev) => ({
-								...prev,
-								field
-							}));
-						}}
-					/>
-				</td>
-			</tr>
-		</table>
+		<Table>
+			<tbody>
+				<tr>
+					<Table.Th>
+						<h5>Branş</h5>
+					</Table.Th>
+					<Table.Td>
+						<BranchSelect value={preferenceState.branch.value} handleChange={() => undefined} />
+					</Table.Td>
+				</tr>
+				<tr>
+					<Table.Th>
+						<h5>Salon</h5>
+					</Table.Th>
+					<Table.Td>
+						<FacilitySelect
+							value={preferenceState.facility.value}
+							handleChange={(facility) => {
+								setPreferenceState((prev) => ({
+									...prev,
+									facility
+								}));
+							}}
+						/>
+					</Table.Td>
+				</tr>
+				<tr>
+					<Table.Th>
+						<h5>Tesis</h5>
+					</Table.Th>
+					<Table.Td>
+						<FieldSelect
+							value={preferenceState.field.value}
+							handleChange={(field) => {
+								setPreferenceState((prev) => ({
+									...prev,
+									field
+								}));
+							}}
+						/>
+					</Table.Td>
+				</tr>
+			</tbody>
+		</Table>
 	);
 }

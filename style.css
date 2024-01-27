@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	font-family: "Inter", monospace;
+}
+
+@layer components {
+	input,
+	select {
+		@apply p-2 w-[355px] text-neutral-900 bg-white text-base font-400 border-2 border-neutral-900 border-solid rounded-s transition-colors;
+	}
+
+	input:hover,
+	select:hover {
+		@apply border-neutral-800;
+	}
+
+	input:focus,
+	select:focus,
+	input:active,
+	select:active {
+		@apply border-primary-500;
+	}
+
+	label {
+		@apply text-base font-700 leading-150p text-neutral-900 select-none;
+	}
+
+	label:hover input ~ .checkmark {
+		@apply bg-primary-500;
+	}
+
+	label:focus input ~ .checkmark,
+	label:active input ~ .checkmark {
+		@apply border-primary-500;
+	}
+
+	label input:checked ~ .checkmark {
+		@apply bg-primary-500;
+	}
+
+	label input:checked ~ .checkmark:after {
+		display: block;
+	}
+
+	span,
+	p {
+		@apply text-base font-400 max-w-[76ch] leading-[150%];
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		all: unset;
+		@apply font-700 leading-[130%];
+	}
+
+	h1,
+	h2,
+	h3 {
+		@apply leading-[130%];
+	}
+
+	h1 {
+		@apply text-[55px];
+	}
+
+	h2 {
+		@apply text-[44px];
+	}
+
+	h3 {
+		@apply text-[35px];
+	}
+
+	h4 {
+		@apply text-[28px];
+	}
+
+	h5 {
+		@apply text-[23px];
+	}
+
+	h6 {
+		@apply text-[20px];
+	}
+}
