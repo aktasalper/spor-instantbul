@@ -44,6 +44,7 @@ function IndexPopup() {
 				</Column>
 				<ReservationPreferences />
 			</Column>
+			<Button onClick={() => chrome.runtime.openOptionsPage()}>Ayarlar</Button>
 		</div>
 	);
 }

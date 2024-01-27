@@ -1,6 +1,7 @@
 export const storageKey = {
 	automation: "automation",
-	preferences: "preferences"
+	preferences: "preferences",
+	pagePreferences: "page-preferences"
 };
 
 export const initialReservationPreferences = {

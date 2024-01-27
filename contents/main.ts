@@ -4,6 +4,7 @@ import { Storage } from "@plasmohq/storage";
 
 import Branding from "url:../assets/branding.png";
 import Logo from "url:../assets/icon.png";
+
 import { storageKey } from "~constant";
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
@@ -167,5 +168,5 @@ function getPostBackFnString(el: HTMLAnchorElement) {
 }
 
 export const config: PlasmoCSConfig = {
-	matches: ["*://*.spor.istanbul/*"]
+	matches: ["*://online.spor.istanbul/*"]
 };
