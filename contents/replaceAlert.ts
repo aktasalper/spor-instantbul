@@ -3,6 +3,6 @@ import type { PlasmoCSConfig } from "plasmo";
 window.alert = () => console.warn("!!! ALERT OVERRIDEN");
 
 export const config: PlasmoCSConfig = {
-	matches: ["*://*.spor.istanbul/*"],
+	matches: ["*://online.spor.istanbul/*"],
 	world: "MAIN"
 };
