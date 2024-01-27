@@ -1,0 +1,31 @@
+{
+	"facility": {
+		"59b7bd71-1aab-4751-8248-7af4a7790f8c": [
+			{ "hidden": false, "name": "AVCILAR SPOR KOMPLEKSİ", "value": "5d4ef42f-e103-431e-94cb-ad5aa5201850" },
+			{ "hidden": true, "name": "BOSTANCI SAHİL SPOR TESİSİ", "value": "bdef460a-c8b1-49de-9c5e-666d622b9458" },
+			{ "hidden": true, "name": "CEMAL KAMACI SPOR KOMPLEKSİ", "value": "7d37f660-0767-4d1b-a4bc-fbdeef19e310" },
+			{ "hidden": false, "name": "FLORYA SPOR TESİSİ", "value": "0848e94d-b6ec-4c02-932e-1adc9348859d" },
+			{ "hidden": true, "name": "GÜZELCE SPOR TESİSİ", "value": "b26f5f58-52e8-4eff-b350-8a53a971d4bc" },
+			{ "hidden": true, "name": "KAYNARCA SPOR TESİSİ", "value": "61fb82a5-54f0-4ebd-a24a-1747ec6b7086" },
+			{ "hidden": true, "name": "MALTEPE SAHİL SPOR TESİSİ", "value": "6989b491-bb85-414a-b470-293b190ebb44" },
+			{ "hidden": true, "name": "METİN OKTAY SPOR TESİSİ", "value": "c2c33709-aa47-4246-8da3-214deda894ef" },
+			{ "hidden": true, "name": "PENDİK ÇAMLIK SPOR TESİSİ", "value": "3bda9473-6f1a-445e-834d-0383e9d7805a" },
+			{ "hidden": true, "name": "PENDİK SAHİL SPOR TESİSİ", "value": "c3f62e8b-c882-4f8d-9934-a59ed180218a" }
+		]
+	},
+	"field": {
+		"5d4ef42f-e103-431e-94cb-ad5aa5201850": [
+			{ "name": "AÇIK TENİS KORTU", "value": "f2cadde6-efe1-4a44-99d2-c26222a16231" },
+			{ "name": "KAPALI TENİS KORTU 1", "value": "d503ef3d-dc63-44dc-8c45-1f2e5ba312e7" },
+			{ "name": "KAPALI TENİS KORTU 2", "value": "39ab31e0-78ec-41ab-b866-c4040b357bd4" }
+		],
+		"0848e94d-b6ec-4c02-932e-1adc9348859d": [
+			{ "name": "AÇIK TENİS KORTU 2", "value": "5a4cf6c5-8975-430d-a63e-2decb159404b" },
+			{ "name": "KAPALI TENİS KORTU 1", "value": "73f8d0da-874d-41e5-9621-df6c2eb4026a" },
+			{ "name": "KAPALI TENİS KORTU 3", "value": "8675ac66-1753-4e89-ac83-2ca462772118" },
+			{ "name": "KAPALI TENİS KORTU 4", "value": "eba78ea9-fc80-4648-9279-294e2c5cabde" },
+			{ "name": "KAPALI TENİS KORTU 5", "value": "12ccda58-ebf0-4f46-9c29-2af5f5af50d7" },
+			{ "name": "KAPALI TENİS KORTU 6", "value": "b0a3dfe6-40f7-4ec2-b7d1-977abd75ca3f" }
+		]
+	}
+}
