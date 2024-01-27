@@ -1,0 +1,44 @@
+{
+	"name": "spor-instantbul",
+	"displayName": "Spor instantbul",
+	"version": "0.4",
+	"description": "Helps with getting quick reservations through 'https://online.spor.istanbul/'",
+	"author": "Alper Aktaş <contact@aktasalper.com>",
+	"homepage": "https://github.com/aktasalper/spor-instantbul",
+	"scripts": {
+		"dev": "plasmo dev",
+		"build": "plasmo build --source-maps",
+		"build-firefox": "pnpm build --target=firefox-mv2",
+		"test": "plasmo test"
+	},
+	"dependencies": {
+		"@plasmohq/messaging": "^0.6.1",
+		"@plasmohq/storage": "^1.9.0",
+		"plasmo": "0.84.1",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
+	"devDependencies": {
+		"@types/chrome": "0.0.251",
+		"@types/node": "20.9.0",
+		"@types/react": "18.2.37",
+		"@types/react-dom": "18.2.15",
+		"prettier": "3.0.3",
+		"typescript": "5.2.2"
+	},
+	"manifest": {
+		"host_permissions": [
+			"*://*.spor.istanbul/*"
+		],
+		"permissions": [
+			"activeTab",
+			"storage",
+			"tabs"
+		],
+		"browser_specific_settings": {
+			"gecko": {
+				"id": "spor-instantbul@aktasalper.com"
+			}
+		}
+	}
+}
