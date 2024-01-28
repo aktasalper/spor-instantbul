@@ -4,6 +4,8 @@ import type { PagePreferences } from "~options/default";
 
 import { Storage } from "@plasmohq/storage";
 
+import { getPage } from "~utils/getPage";
+
 import { storageKey } from "~constant";
 
 const storage = new Storage({
@@ -11,10 +13,6 @@ const storage = new Storage({
 });
 
 storage.getItem<PagePreferences>(storageKey.pagePreferences).then(handlePagePreference);
-
-function getPage() {
-	return window.location.href.split(".istanbul/")[1].split("/")[0];
-}
 
 function handlePagePreference(preferences: PagePreferences) {
 	const page = getPage();
