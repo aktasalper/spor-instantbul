@@ -48,7 +48,7 @@ function handleSatiskiralikPreferences(preferences: PagePreferences["satiskirali
 	if (preferences["hide-warning"]) {
 		const warning = document.getElementById("divBildirim");
 
-		warning.remove();
+		warning?.remove();
 	}
 }
 
