@@ -1,7 +1,7 @@
 {
 	"name": "spor-instantbul",
 	"displayName": "SPOR INSTANTBUL",
-	"version": "0.6",
+	"version": "0.7",
 	"description": "Helps with getting quick reservations through 'https://online.spor.istanbul/'",
 	"author": "Alper Aktaş <contact@aktasalper.com>",
 	"homepage": "https://github.com/aktasalper/spor-instantbul",
@@ -36,8 +36,7 @@
 		],
 		"permissions": [
 			"activeTab",
-			"storage",
-			"tabs"
+			"storage"
 		],
 		"browser_specific_settings": {
 			"gecko": {
