@@ -41,7 +41,7 @@ function IndexPopup() {
 	}, []);
 
 	return (
-		<div className='bg-primary-900 flex flex-col justify-between gap-2 p-2 min-w-[520px] min-h-[200px]'>
+		<div className='bg-primary-900 flex flex-col justify-between gap-2 p-2 min-w-[520px]'>
 			<Notification type='info'>
 				<h5>Bir sonraki rezervasyona kalan süre</h5>
 				<span id='countdown'>{timeRemaining}</span>
