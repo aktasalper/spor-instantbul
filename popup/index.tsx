@@ -7,24 +7,28 @@ import { sendToContentScript } from "@plasmohq/messaging";
 
 import { useCountdown } from "./countdown/useCountdown";
 import { getPage } from "~utils/getPage";
+import { isAutomationPage } from "~utils/isAutomationPage";
 
 import { Button } from "~components/Button";
-import { LightningIcon } from "~components/icons/LightningIcon";
 import { Notification } from "~components/Notification";
 import { Row, Column } from "~components/Flex";
 import { ReservationPreferences } from "./ReservationPreferences/ReservationPreferences";
 import { SessionPreferences } from "./SessionPreferences/SessionPreferences";
 
-import { automationPages, storageKey } from "~constant";
-import { isAutomationPage } from "~utils/isAutomationPage";
+import { LightningIcon } from "~components/icons/LightningIcon";
 import { TuningIcon } from "~components/icons/TuningIcon";
 
+import { initialReservationPreferences, storageKey } from "~constant";
+
 function IndexPopup() {
-	const timeRemaining = useCountdown();
+	useStorage(storageKey.preferences, (v) => v ?? initialReservationPreferences); // Init with default data to make it ready to use any time
+
 	const [automationState] = useStorage<AutomationState>(storageKey.automation);
 	const [currentPage, setCurrentPage] = useState<AutomationPage | "">("");
 	const canAutomate = isAutomationPage(currentPage);
 	const currentAutomation = canAutomate ? automationState?.[currentPage] : null;
+
+	const timeRemaining = useCountdown();
 
 	useEffect(() => {
 		chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
