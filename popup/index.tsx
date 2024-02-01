@@ -21,7 +21,8 @@ import { TuningIcon } from "~components/icons/TuningIcon";
 import { initialReservationPreferences, storageKey } from "~constant";
 
 function IndexPopup() {
-	useStorage(storageKey.preferences, (v) => v ?? initialReservationPreferences); // Init with default data to make it ready to use any time
+	const [prefs] = useStorage(storageKey.preferences, (v) => v ?? initialReservationPreferences); // Init with default data to make it ready to use any time
+	console.log("🚀 ~ IndexPopup ~ prefs:", prefs);
 
 	const [automationState] = useStorage<AutomationState>(storageKey.automation);
 	const [currentPage, setCurrentPage] = useState<AutomationPage | "">("");
