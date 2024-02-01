@@ -3,9 +3,11 @@ import { useStorage } from "@plasmohq/storage/hook";
 import { BranchSelect } from "./BranchSelect";
 import { FacilitySelect } from "~components/FacilitySelect";
 import { FieldSelect } from "./FieldSelect";
+import { Table } from "~components/Table";
 
 import { initialReservationPreferences, storageKey } from "~constant";
-import { Table } from "~components/Table";
+
+import options from "./options.json";
 
 export function ReservationPreferences() {
 	const [preferenceState, setPreferenceState] = useStorage<ReservationPreferences>(
@@ -35,7 +37,8 @@ export function ReservationPreferences() {
 							handleChange={(facility) => {
 								setPreferenceState((prev) => ({
 									...prev,
-									facility
+									facility,
+									field: options.field[facility.value][0]
 								}));
 							}}
 						/>
