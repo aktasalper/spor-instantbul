@@ -12,6 +12,7 @@ type MessageAction =
 type SatisKiralikAutomationState = Preference | ReservationProcess | null;
 type SeansSecimAutomationState = "facility" | SessionReservationProcess;
 type AutomationState = { satiskiralik: SatisKiralikAutomationState; uyeseanssecim: SeansSecimAutomationState };
+type SatisKiralikPreferences = { automationStartStep: Preference };
 
 type AutomationPage = "satiskiralik" | "uyeseanssecim";
 

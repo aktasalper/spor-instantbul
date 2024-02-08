@@ -10,7 +10,9 @@ const Checkmark = () => (
 
 export function Checkbox({ labelProps, children, ...rest }: Props) {
 	return (
-		<label {...labelProps} className='flex flex-row-reverse cursor-pointer w-max'>
+		<label
+			{...labelProps}
+			className={["flex", "flex-row-reverse", "cursor-pointer", "w-max", labelProps?.className].join(" ")}>
 			{children}
 			<input
 				{...rest}

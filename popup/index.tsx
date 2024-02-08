@@ -22,10 +22,9 @@ import { initialReservationPreferences, storageKey } from "~constant";
 
 function IndexPopup() {
 	const [prefs] = useStorage(storageKey.preferences, (v) => v ?? initialReservationPreferences); // Init with default data to make it ready to use any time
-	console.log("🚀 ~ IndexPopup ~ prefs:", prefs);
 
 	const [automationState] = useStorage<AutomationState>(storageKey.automation);
-	const [currentPage, setCurrentPage] = useState<AutomationPage | "">("");
+	const [currentPage, setCurrentPage] = useState("");
 	const canAutomate = isAutomationPage(currentPage);
 	const currentAutomation = canAutomate ? automationState?.[currentPage] : null;
 
@@ -33,11 +32,9 @@ function IndexPopup() {
 
 	useEffect(() => {
 		chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-			var activeTab = tabs[0];
-			setCurrentPage(getPage(activeTab.url) as any);
+			const activeTab = tabs[0];
+			setCurrentPage(getPage(activeTab.url));
 		});
-
-		// remove();
 	}, []);
 
 	return (

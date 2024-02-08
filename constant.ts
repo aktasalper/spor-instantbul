@@ -3,8 +3,9 @@ import type { StringKeyOf } from "type-fest";
 export const storageKey = {
 	automation: "automation",
 	preferences: "preferences",
-	pagePreferences: "page-preferences",
-	sessionResPreference: "session-reservation-preference"
+	pagePreferences: "page-preference",
+	sessionResPreference: "session_reservation-preference",
+	satiskiralik: "satiskiralik"
 };
 
 export type StorageKey = StringKeyOf<typeof storageKey>;
@@ -23,6 +24,9 @@ export const initialReservationPreferences = {
 	}
 };
 
-export const automationDefault: AutomationState = { satiskiralik: null, uyeseanssecim: null };
+export const initialSatiskiralikPreferences: SatisKiralikPreferences = {
+	automationStartStep: "branch"
+};
 
+export const automationDefault: AutomationState = { satiskiralik: null, uyeseanssecim: null };
 export const automationPages: Set<AutomationPage> = new Set(["satiskiralik", "uyeseanssecim"]);
