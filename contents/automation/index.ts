@@ -25,9 +25,12 @@ chrome.runtime.onMessage.addListener((msg, _sender, _sendResponse) => {
 			overrideState = "facility";
 		}
 
-		storage.getItem<AutomationState>(storageKey.automation).then((state) => {
+		storage.getAll().then((allState) => {
+			const pagePreference: Preference | undefined = JSON.parse(allState[currentPage] ?? "{}").automationStartStep;
+			const state = JSON.parse(allState[storageKey.automation]) as AutomationState;
+
 			storage
-				.setItem(storageKey.automation, { ...state, [currentPage]: overrideState })
+				.setItem(storageKey.automation, { ...state, [currentPage]: pagePreference ?? overrideState })
 				.then(delegateAutomationForCurrentPage);
 		});
 	}

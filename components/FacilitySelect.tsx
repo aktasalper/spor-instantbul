@@ -9,13 +9,16 @@ interface FacilitySelectProps extends ReservationPreferenceSelectProps {
 	showHidden?: boolean;
 }
 
-export function FacilitySelect({ value, handleChange, branch, showHidden }: FacilitySelectProps) {
+export function FacilitySelect({ disabled = false, value, handleChange, branch, showHidden }: FacilitySelectProps) {
 	const branchFacilities: Array<ReservationOption> = (options.facility?.[branch] ?? []).filter((f) =>
 		showHidden ? f : !f.hidden
 	);
 
 	return (
-		<select value={value} onChange={(e) => handleChange(branchFacilities.find((f) => f.value === e.target.value))}>
+		<select
+			disabled={disabled}
+			value={value}
+			onChange={(e) => handleChange(branchFacilities.find((f) => f.value === e.target.value))}>
 			{branchFacilities.map((facility) => (
 				<option key={facility.value} value={facility.value}>
 					{facility.name}

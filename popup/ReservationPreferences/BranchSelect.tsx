@@ -1,5 +1,5 @@
-export const BranchSelect = ({ value }: ReservationPreferenceSelectProps) => (
-	<select value={value}>
+export const BranchSelect = ({ disabled = false, value }: ReservationPreferenceSelectProps) => (
+	<select disabled={disabled} value={value}>
 		<option value='59b7bd71-1aab-4751-8248-7af4a7790f8c'>Tenis</option>
 		<option hidden value='5bdbe5f0-a06e-4243-b65d-231b3c2247ed'>
 			Futbol
