@@ -1,6 +1,8 @@
+type ListOption = { name: string; value: string; hidden?: boolean };
+
 type Preference = "branch" | "facility" | "field";
 type ReservationProcess = "reservation" | "to_cart";
-type ReservationPreferences = Record<Preference, { name: string; value: string }>;
+type ReservationPreferences = Record<Preference, ListOption>;
 
 type SessionPreference = string;
 type SessionReservationProcess = "check" | "confirm" | "captcha" | "save";

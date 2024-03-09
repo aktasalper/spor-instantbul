@@ -8,7 +8,6 @@ import { Table } from "~components/Table";
 import { initialReservationPreferences, initialSatiskiralikPreferences, storageKey } from "~constant";
 
 import options from "./options.json";
-import { Checkbox } from "~components/Checkbox";
 import { Row } from "~components/Flex";
 
 export function ReservationPreferences() {
@@ -48,7 +47,17 @@ export function ReservationPreferences() {
 						<BranchSelect
 							disabled={satiskiralikPrefs.automationStartStep !== "branch"}
 							value={preferenceState.branch.value}
-							handleChange={() => undefined}
+							handleChange={(branch) => {
+								const availableFacilities: Array<ListOption> = options.facility[branch.value].filter((f) => !f.hidden);
+
+								const facility = availableFacilities[0];
+
+								setPreferenceState({
+									branch,
+									facility,
+									field: options.field[facility.value]
+								});
+							}}
 						/>
 					</Table.Td>
 				</tr>

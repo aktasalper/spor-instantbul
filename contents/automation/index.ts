@@ -1,3 +1,4 @@
+import type { PlasmoCSConfig } from "plasmo";
 import type { ValueOf } from "type-fest";
 
 import { Storage } from "@plasmohq/storage";
@@ -55,3 +56,7 @@ function delegateAutomationForCurrentPage() {
 		}
 	});
 }
+
+export const config: PlasmoCSConfig = {
+	matches: ["*://online.spor.istanbul/*"]
+};

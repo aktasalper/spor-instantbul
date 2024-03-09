@@ -11,6 +11,52 @@
 			{ "hidden": true, "name": "METİN OKTAY SPOR TESİSİ", "value": "c2c33709-aa47-4246-8da3-214deda894ef" },
 			{ "hidden": true, "name": "PENDİK ÇAMLIK SPOR TESİSİ", "value": "3bda9473-6f1a-445e-834d-0383e9d7805a" },
 			{ "hidden": true, "name": "PENDİK SAHİL SPOR TESİSİ", "value": "c3f62e8b-c882-4f8d-9934-a59ed180218a" }
+		],
+		"5bdbe5f0-a06e-4243-b65d-231b3c2247ed": [
+			{ "hidden": true, "name": "BOSTANCI SAHİL SPOR TESİSİ", "value": "03nj-bdef460a-c8b1-49de-9c5e-666d622b9458" },
+			{ "hidden": true, "name": "CEMAL KAMACI SPOR KOMPLEKSİ", "value": "4ngd-7d37f660-0767-4d1b-a4bc-fbdeef19e310" },
+			{ "hidden": true, "name": "EDİRNEKAPI SPOR TESİSİ", "value": "v45o-4834f181-b340-46ee-9874-20d49a8777f1" },
+			{ "hidden": true, "name": "FLORYA SPOR TESİSİ", "value": "517m-0848e94d-b6ec-4c02-932e-1adc9348859d" },
+			{ "hidden": true, "name": "HALDUN ALAGAŞ SPOR KOMPLEKSİ", "value": "6xd2-ace4566a-984c-4d84-8bd2-e89a28bad1d3" },
+			{ "hidden": true, "name": "HALİÇ SPOR PARKI", "value": "uh81-81921d47-3220-4308-9809-f4e3e3891873" },
+			{
+				"hidden": true,
+				"name": "HAMZA YERLİKAYA SPOR KOMPLEKSİ",
+				"value": "f6j2-d066e1ff-70eb-4022-848d-7298203e318a"
+			},
+			{ "hidden": true, "name": "HEYBELİ ADA", "value": "y7bp-661d32c4-d79d-41cb-9567-5bc224525752" },
+			{ "hidden": true, "name": "HİDAYET TÜRKOĞLU SPOR TESİSİ", "value": "bu6u-2106afd0-018f-436e-8aaa-db7f25230a6a" },
+			{ "hidden": true, "name": "KAYNARCA SPOR TESİSİ", "value": "e04d-61fb82a5-54f0-4ebd-a24a-1747ec6b7086" },
+			{ "hidden": true, "name": "MALTEPE SAHİL SPOR TESİSİ", "value": "6xqw-6989b491-bb85-414a-b470-293b190ebb44" },
+			{ "hidden": true, "name": "METİN OKTAY SPOR TESİSİ", "value": "virx-c2c33709-aa47-4246-8da3-214deda894ef" },
+			{ "hidden": true, "name": "PENDİK ÇAMLIK SPOR TESİSİ", "value": "imlf-3bda9473-6f1a-445e-834d-0383e9d7805a" },
+			{ "hidden": true, "name": "PENDİK KURTKÖY SPOR KOMPLEKSİ", "value": "wfme-12ae71e2-ee3e-4073-a439-da3517e74a50" },
+			{ "hidden": true, "name": "PENDİK SAHİL SPOR TESİSİ", "value": "eaec-c3f62e8b-c882-4f8d-9934-a59ed180218a" },
+			{
+				"hidden": true,
+				"name": "SİLİVRİ MÜJDAT GÜRSU SPOR TESİSİ",
+				"value": "33ie-a0921d79-d519-4f10-8663-11be1f9dfcf3"
+			},
+			{
+				"hidden": true,
+				"name": "SULTANBEYLİ 100. YIL SPOR KOMPLEKSİ",
+				"value": "qbjy-05efe521-f4bf-4523-9632-77f1c9482791"
+			},
+			{ "hidden": true, "name": "SULTANBEYLİ GÖLET SPOR TESİSİ", "value": "a4yw-04087b93-3d76-47e7-b40d-7a03a67d2520" },
+			{ "hidden": true, "name": "SULTANGAZİ GAZİ SPOR TESİSİ", "value": "fx0r-45e51f57-73ad-4dc3-9e26-12f9181c4df1" },
+			{ "hidden": true, "name": "ŞİLE SPOR KOMPLEKSİ", "value": "56jw-12d56bc4-6e84-44ac-97a3-106d78609f83" },
+			{ "hidden": false, "name": "TEVFİK AYDENİZ SPOR TESİSİ", "value": "qu1h-27c1dfdb-866d-40e1-aec4-e079ddf715b7" },
+			{ "hidden": true, "name": "TUZLA SAHİL SPOR TESİSİ", "value": "yr7u-59aed6f3-a9ab-4b26-b461-1bf1d3935fbb" }
+		],
+		"b735aa4b-5923-4789-a04e-bf3e0b0a467c": [
+			{ "hidden": true, "name": "AVCILAR SPOR KOMPLEKSİ", "value": "5d4ef42f-e103-431e-94cb-ad5aa5201850" },
+			{ "hidden": true, "name": "ÇEKMEKÖY SPOR KOMPLEKSİ", "value": "f7170839-e17a-4f44-b174-a08e4c3292d3" },
+			{ "hidden": true, "name": "ESENLER SPOR KOMPLEKSİ", "value": "afb6beb3-ed8f-4739-8526-a9d50ad91ee5" },
+			{ "hidden": true, "name": "HAMZA YERLİKAYA SPOR KOMPLEKSİ", "value": "d066e1ff-70eb-4022-848d-7298203e318a" },
+			{ "hidden": true, "name": "KARTAL HASAN DOĞAN SPOR KOMPLEKSİ", "value": "3cf4a185-b0b8-4856-8245-cd70041e9b48" },
+			{ "hidden": true, "name": "METİN OKTAY SPOR TESİSİ", "value": "c2c33709-aa47-4246-8da3-214deda894ef" },
+			{ "hidden": true, "name": "TAHA AKGÜL SPOR KOMPLEKSİ", "value": "9426b1ad-18f9-4397-869c-7f5e4968abb4" },
+			{ "hidden": false, "name": "TEVFİK AYDENİZ SPOR TESİSİ", "value": "27c1dfdb-866d-40e1-aec4-e079ddf715b7" }
 		]
 	},
 	"field": {
@@ -26,6 +72,12 @@
 			{ "name": "KAPALI TENİS KORTU 4", "value": "eba78ea9-fc80-4648-9279-294e2c5cabde" },
 			{ "name": "KAPALI TENİS KORTU 5", "value": "12ccda58-ebf0-4f46-9c29-2af5f5af50d7" },
 			{ "name": "KAPALI TENİS KORTU 6", "value": "b0a3dfe6-40f7-4ec2-b7d1-977abd75ca3f" }
+		],
+		"qu1h-27c1dfdb-866d-40e1-aec4-e079ddf715b7": [
+			{ "name": "HALI SAHA 1", "value": "730b6f40-cd79-4af4-853c-acad66f706e3" }
+		],
+		"27c1dfdb-866d-40e1-aec4-e079ddf715b7": [
+			{ "name": "KAPALI SALON", "value": "886g-54ff68c3-c2e0-48d0-8ace-793751916932" }
 		]
 	}
 }

@@ -1,7 +1,3 @@
-import type { StorageKey } from "~constant";
-
-import { useStorage } from "@plasmohq/storage/hook";
-
 import options from "../popup/ReservationPreferences/options.json";
 
 interface FacilitySelectProps extends ReservationPreferenceSelectProps {
