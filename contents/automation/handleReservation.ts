@@ -11,7 +11,7 @@ import { storageKey } from "~constant";
 
 let reservationOptionsContainerExistsTimeout: NodeJS.Timeout;
 let reservationOptionLocatorRetries = 0;
-const reservationSelectionSteps: Array<AutomationState["satiskiralik"]> = ["branch", "facility", "field"];
+const initialSelectionSteps: Array<AutomationState["satiskiralik"]> = ["branch", "facility", "field"]; // Standard selection steps for all sport branches
 const currentPage = getPage();
 const storage = new Storage({
 	area: "sync"
@@ -96,7 +96,7 @@ export async function handleReservationAutomation(step: AutomationState["satiski
 		const preferences = await storage.getItem<ReservationPreferences>(storageKey.preferences);
 
 		if (preferences != null) {
-			if (reservationSelectionSteps.includes(step)) {
+			if (initialSelectionSteps.includes(step)) {
 				const payload = preferences[step].value;
 
 				handleDispatch({ action: `SELECT_${step.toUpperCase() as Uppercase<Preference>}`, payload });

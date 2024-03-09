@@ -4,7 +4,7 @@ import { storageKey } from "~constant";
 
 export function FieldSelect({ disabled = false, value, handleChange }: ReservationPreferenceSelectProps) {
 	const [preferences] = useStorage<ReservationPreferences>(storageKey.preferences, {} as any);
-	const facilityFields: Array<ReservationOption> = options.field?.[preferences?.facility?.value] ?? [];
+	const facilityFields: Array<ListOption> = options.field?.[preferences?.facility?.value] ?? [];
 
 	return (
 		<select
