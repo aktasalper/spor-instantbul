@@ -3,6 +3,7 @@ import { Storage } from "@plasmohq/storage";
 import { getPostBackFnString } from "~utils/getPostBackFnString";
 import { getPage } from "~utils/getPage";
 
+import { getNextReservationStep } from "./getNextReservationStep";
 import { changeSelectValue } from "./changeSelectValue";
 import { resetAutomationState } from "./resetAutomationState";
 
@@ -37,32 +38,6 @@ function handleDispatch(message: DispatchOption) {
 			console.error("spor-instantbul - unhandled action:", message.action);
 			break;
 	}
-}
-
-function getNextReservationStep(currentStep: AutomationState["satiskiralik"]) {
-	let nextStep: AutomationState["satiskiralik"];
-	switch (currentStep) {
-		case null:
-			nextStep = "branch";
-			break;
-		case "branch":
-			nextStep = "facility";
-			break;
-		case "facility":
-			nextStep = "field";
-			break;
-		case "field":
-			nextStep = "reservation";
-			break;
-		case "reservation":
-			nextStep = "to_cart";
-			break;
-		case "to_cart":
-		default:
-			nextStep = null;
-	}
-
-	return nextStep;
 }
 
 function addReservation() {
