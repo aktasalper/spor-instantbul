@@ -75,16 +75,14 @@
 		]
 	},
 	"field:5bdbe5f0-a06e-4243-b65d-231b3c2247ed": {
-		"27c1dfdb-866d-40e1-aec4-e079ddf715b7": [
-			{ "name": "HALI SAHA 1", "value": "730b6f40-cd79-4af4-853c-acad66f706e3" }
-		],
-		"afb6beb3-ed8f-4739-8526-a9d50ad91ee5": [
-			{ "name": "KAPALI SALON", "value": "df04bc81-ac49-4307-8159-4fe8477abba4" }
-		]
+		"27c1dfdb-866d-40e1-aec4-e079ddf715b7": [{ "name": "HALI SAHA 1", "value": "730b6f40-cd79-4af4-853c-acad66f706e3" }]
 	},
 	"field:b735aa4b-5923-4789-a04e-bf3e0b0a467c": {
 		"27c1dfdb-866d-40e1-aec4-e079ddf715b7": [
 			{ "name": "KAPALI SALON", "value": "886g-54ff68c3-c2e0-48d0-8ace-793751916932" }
+		],
+		"afb6beb3-ed8f-4739-8526-a9d50ad91ee5": [
+			{ "name": "KAPALI SALON", "value": "df04bc81-ac49-4307-8159-4fe8477abba4" }
 		]
 	}
 }
