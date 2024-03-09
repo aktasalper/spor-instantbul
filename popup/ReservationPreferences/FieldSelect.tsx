@@ -5,7 +5,9 @@ import options from "~options.json";
 
 export function FieldSelect({ disabled = false, value, handleChange }: ReservationPreferenceSelectProps) {
 	const [preferences] = useStorage<ReservationPreferences>(storageKey.preferences, {} as any);
-	const facilityFields: Array<ListOption> = options.field?.[preferences?.facility?.value] ?? [];
+
+	const fieldScope = options[`field:${preferences?.branch?.value}`];
+	const facilityFields: Array<ListOption> = fieldScope?.[preferences?.facility?.value] ?? [];
 
 	return (
 		<select

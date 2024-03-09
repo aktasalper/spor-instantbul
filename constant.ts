@@ -23,7 +23,9 @@ export const branches = [
 
 const tennis = branches[0];
 export const avcilarFacility: ListOption = options.facility[tennis.value][0];
-const avcilarFacilityField = options.field[avcilarFacility.value][0];
+const fieldScope = options[`field:${tennis.value}`];
+const field = fieldScope[avcilarFacility.value] as Array<ListOption>;
+const avcilarFacilityField = field[0];
 
 export const initialReservationPreferences = {
 	branch: tennis,

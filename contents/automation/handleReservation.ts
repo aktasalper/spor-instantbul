@@ -8,9 +8,12 @@ import { changeSelectValue } from "./changeSelectValue";
 import { resetAutomationState } from "./resetAutomationState";
 
 import { storageKey } from "~constant";
+import { waitFor } from "~utils/waitFor";
 
 let reservationOptionsContainerExistsTimeout: NodeJS.Timeout;
 let reservationOptionLocatorRetries = 0;
+let currentBranch: Branch = "Tenis";
+
 const initialSelectionSteps: Array<AutomationState["satiskiralik"]> = ["branch", "facility", "field"]; // Standard selection steps for all sport branches
 const currentPage = getPage();
 const storage = new Storage({
@@ -52,7 +55,11 @@ function addReservation() {
 		lastResAnchor.parentElement.appendChild(anchorOverride);
 		anchorOverride.click();
 
-		chooseReservationType();
+		if (currentBranch === "Tenis") {
+			chooseReservationType();
+		} else {
+			addToCart();
+		}
 	} else {
 		resetAutomationState();
 		alert("Arama kriterleriniz kapsamında alınabilir rezervasyon bulunamadı!");
@@ -71,13 +78,14 @@ function chooseReservationType() {
 	}
 }
 
-function markAsRead() {
-	const checkbox = document.getElementById("pageContent_cboxKiralikSatisSozlesmesi") as HTMLInputElement;
+async function markAsRead() {
+	const checkbox = (await waitFor("#pageContent_cboxKiralikSatisSozlesmesi")) as HTMLInputElement;
+
 	checkbox.checked = true;
 }
 
-function addToCart() {
-	markAsRead();
+async function addToCart() {
+	await markAsRead();
 	const addToCartAnchor = document.getElementById("pageContent_lbtnSepeteEkle") as HTMLAnchorElement;
 
 	const anchorOverride = document.createElement("a");
@@ -96,10 +104,13 @@ export async function handleReservationAutomation(step: AutomationState["satiski
 		const preferences = await storage.getItem<ReservationPreferences>(storageKey.preferences);
 
 		if (preferences != null) {
+			currentBranch = preferences.branch.name as Branch;
+
 			if (initialSelectionSteps.includes(step)) {
 				const stepObj = preferences[step] as ListOption;
+				let payload = stepObj.value;
 
-				handleDispatch({ action: `SELECT_${step.toUpperCase() as Uppercase<Preference>}`, payload: stepObj.value });
+				handleDispatch({ action: `SELECT_${step.toUpperCase() as Uppercase<Preference>}`, payload });
 			} else {
 				handleDispatch({ action: `ADD_${step.toUpperCase() as Uppercase<ReservationProcess>}` });
 			}
