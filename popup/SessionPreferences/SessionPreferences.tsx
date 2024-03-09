@@ -1,12 +1,12 @@
 import { useStorage } from "@plasmohq/storage/hook";
 import { FacilitySelect } from "~components/FacilitySelect";
-import { avcilarFacility, storageKey } from "~constant";
+import { avcilarFacility as defaultFacility, storageKey } from "~constant";
 
 export function SessionPreferences() {
 	const [branchPreference] = useStorage<ReservationPreferences>(storageKey.preferences);
 	const [sessionFacilityPreference, setFacilityPreference] = useStorage<string>(
 		storageKey.sessionResPreference,
-		(v) => v ?? avcilarFacility
+		(v) => v ?? defaultFacility.value
 	);
 
 	if (!sessionFacilityPreference || Object.keys(sessionFacilityPreference).length === 0) {

@@ -7,7 +7,7 @@ import { Table } from "~components/Table";
 
 import { initialReservationPreferences, initialSatiskiralikPreferences, storageKey } from "~constant";
 
-import options from "./options.json";
+import options from "~options.json";
 import { Row } from "~components/Flex";
 
 export function ReservationPreferences() {

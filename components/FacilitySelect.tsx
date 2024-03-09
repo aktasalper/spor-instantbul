@@ -1,4 +1,4 @@
-import options from "../popup/ReservationPreferences/options.json";
+import options from "~options.json";
 
 interface FacilitySelectProps extends ReservationPreferenceSelectProps {
 	branch: string;

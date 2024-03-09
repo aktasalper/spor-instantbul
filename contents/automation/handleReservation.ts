@@ -97,9 +97,9 @@ export async function handleReservationAutomation(step: AutomationState["satiski
 
 		if (preferences != null) {
 			if (initialSelectionSteps.includes(step)) {
-				const payload = preferences[step].value;
+				const stepObj = preferences[step] as ListOption;
 
-				handleDispatch({ action: `SELECT_${step.toUpperCase() as Uppercase<Preference>}`, payload });
+				handleDispatch({ action: `SELECT_${step.toUpperCase() as Uppercase<Preference>}`, payload: stepObj.value });
 			} else {
 				handleDispatch({ action: `ADD_${step.toUpperCase() as Uppercase<ReservationProcess>}` });
 			}
