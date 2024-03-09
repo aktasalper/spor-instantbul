@@ -19,3 +19,6 @@ type SatisKiralikPreferences = { automationStartStep: Preference };
 type AutomationPage = "satiskiralik" | "uyeseanssecim";
 
 type DispatchOption = { action: MessageAction; payload?: string };
+
+type Branch = import("~constant").BranchType;
+type ProjectOptions = import("~constant").ProjectOptionsType;

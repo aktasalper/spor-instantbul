@@ -4,11 +4,10 @@ import { BranchSelect } from "./BranchSelect";
 import { FacilitySelect } from "~components/FacilitySelect";
 import { FieldSelect } from "./FieldSelect";
 import { Table } from "~components/Table";
+import { Row } from "~components/Flex";
 
 import { initialReservationPreferences, initialSatiskiralikPreferences, storageKey } from "~constant";
-
-import options from "./options.json";
-import { Row } from "~components/Flex";
+import options from "~options.json";
 
 export function ReservationPreferences() {
 	const [preferenceState, setPreferenceState] = useStorage<ReservationPreferences>(
@@ -51,11 +50,12 @@ export function ReservationPreferences() {
 								const availableFacilities: Array<ListOption> = options.facility[branch.value].filter((f) => !f.hidden);
 
 								const facility = availableFacilities[0];
+								const fieldScope = options[`field:${branch.value}`];
 
 								setPreferenceState({
 									branch,
 									facility,
-									field: options.field[facility.value]
+									field: fieldScope[facility.value][0]
 								});
 							}}
 						/>
@@ -87,11 +87,15 @@ export function ReservationPreferences() {
 							branch={preferenceState.branch.value}
 							value={preferenceState.facility.value}
 							handleChange={(facility) => {
-								setPreferenceState((prev) => ({
-									...prev,
-									facility,
-									field: options.field[facility.value][0]
-								}));
+								setPreferenceState((prev) => {
+									const fieldScope = options[`field:${prev.branch.value}`];
+
+									return {
+										...prev,
+										facility,
+										field: fieldScope[facility.value][0]
+									};
+								});
 							}}
 						/>
 					</Table.Td>

@@ -1,4 +1,4 @@
-import options from "../popup/ReservationPreferences/options.json";
+import options from "~options.json";
 
 interface FacilitySelectProps extends ReservationPreferenceSelectProps {
 	branch: string;
@@ -6,7 +6,7 @@ interface FacilitySelectProps extends ReservationPreferenceSelectProps {
 }
 
 export function FacilitySelect({ disabled = false, value, handleChange, branch, showHidden }: FacilitySelectProps) {
-	const branchFacilities: Array<ReservationOption> = (options.facility?.[branch] ?? []).filter((f) =>
+	const branchFacilities: Array<ListOption> = (options.facility?.[branch] ?? []).filter((f) =>
 		showHidden ? f : !f.hidden
 	);
 
