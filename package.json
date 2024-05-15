@@ -1,7 +1,7 @@
 {
 	"name": "spor-instantbul",
 	"displayName": "SPOR INSTANTBUL",
-	"version": "0.8.4",
+	"version": "0.9.0",
 	"description": "Helps with getting quick reservations through 'https://online.spor.istanbul/'",
 	"author": "Alper Aktaş <contact@aktasalper.com>",
 	"homepage": "https://github.com/aktasalper/spor-instantbul",
@@ -9,6 +9,7 @@
 		"dev": "plasmo dev",
 		"build": "plasmo build --source-maps",
 		"build-firefox": "pnpm build --target=firefox-mv2",
+		"build-all": "pnpm build && pnpm build-firefox",
 		"test": "plasmo test"
 	},
 	"dependencies": {
