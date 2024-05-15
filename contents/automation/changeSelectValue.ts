@@ -12,7 +12,7 @@ export function changeSelectValue(selector: string, newValue: string) {
 	} else {
 		resetAutomationState();
 		alert(
-			`${selector} için ${newValue} seçeneği bulunamadığı için otomasyon işlemi durduruldu! Sunulan seçeneklerin sunucu tanımları değişmiş olabilir. Eğer sorun devam ederse eklenti sayfasında belirtilen mail adresinden benimle iletişime geçebilirsiniz.`
+			`"${selector}" elementinin "${newValue}" seçeneği bulunamadığı için otomasyon işlemi durduruldu! Seçeneklerin tanımları değişmiş olabilir. Eğer sorun devam ederse, eklenti sayfasındaki mail adresinden benimle iletişime geçebilirsiniz.`
 		);
 	}
 }
