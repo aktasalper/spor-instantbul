@@ -8,7 +8,6 @@ import { changeSelectValue } from "./changeSelectValue";
 import { resetAutomationState } from "./resetAutomationState";
 
 import { storageKey } from "~constant";
-import { waitFor } from "~utils/waitFor";
 
 let reservationOptionsContainerExistsTimeout: NodeJS.Timeout;
 let reservationOptionLocatorRetries = 0;
@@ -78,14 +77,7 @@ function chooseReservationType() {
 	}
 }
 
-async function markAsRead() {
-	const checkbox = (await waitFor("#pageContent_cboxKiralikSatisSozlesmesi")) as HTMLInputElement;
-
-	checkbox.checked = true;
-}
-
 async function addToCart() {
-	await markAsRead();
 	const addToCartAnchor = document.getElementById("pageContent_lbtnSepeteEkle") as HTMLAnchorElement;
 
 	const anchorOverride = document.createElement("a");
