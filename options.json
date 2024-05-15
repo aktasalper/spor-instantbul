@@ -7,7 +7,7 @@
 			{ "hidden": false, "name": "FLORYA SPOR TESİSİ", "value": "0848e94d-b6ec-4c02-932e-1adc9348859d" },
 			{ "hidden": true, "name": "GÜZELCE SPOR TESİSİ", "value": "b26f5f58-52e8-4eff-b350-8a53a971d4bc" },
 			{ "hidden": true, "name": "KAYNARCA SPOR TESİSİ", "value": "61fb82a5-54f0-4ebd-a24a-1747ec6b7086" },
-			{ "hidden": true, "name": "MALTEPE SAHİL SPOR TESİSİ", "value": "6989b491-bb85-414a-b470-293b190ebb44" },
+			{ "hidden": false, "name": "MALTEPE SAHİL SPOR TESİSİ", "value": "6989b491-bb85-414a-b470-293b190ebb44" },
 			{ "hidden": true, "name": "METİN OKTAY SPOR TESİSİ", "value": "c2c33709-aa47-4246-8da3-214deda894ef" },
 			{ "hidden": true, "name": "PENDİK ÇAMLIK SPOR TESİSİ", "value": "3bda9473-6f1a-445e-834d-0383e9d7805a" },
 			{ "hidden": true, "name": "PENDİK SAHİL SPOR TESİSİ", "value": "c3f62e8b-c882-4f8d-9934-a59ed180218a" }
@@ -27,7 +27,7 @@
 			{ "hidden": true, "name": "HEYBELİ ADA", "value": "y7bp-661d32c4-d79d-41cb-9567-5bc224525752" },
 			{ "hidden": true, "name": "HİDAYET TÜRKOĞLU SPOR TESİSİ", "value": "bu6u-2106afd0-018f-436e-8aaa-db7f25230a6a" },
 			{ "hidden": true, "name": "KAYNARCA SPOR TESİSİ", "value": "e04d-61fb82a5-54f0-4ebd-a24a-1747ec6b7086" },
-			{ "hidden": true, "name": "MALTEPE SAHİL SPOR TESİSİ", "value": "6xqw-6989b491-bb85-414a-b470-293b190ebb44" },
+			{ "hidden": false, "name": "MALTEPE SAHİL SPOR TESİSİ", "value": "6xqw-6989b491-bb85-414a-b470-293b190ebb44" },
 			{ "hidden": true, "name": "METİN OKTAY SPOR TESİSİ", "value": "virx-c2c33709-aa47-4246-8da3-214deda894ef" },
 			{ "hidden": true, "name": "PENDİK ÇAMLIK SPOR TESİSİ", "value": "imlf-3bda9473-6f1a-445e-834d-0383e9d7805a" },
 			{ "hidden": true, "name": "PENDİK KURTKÖY SPOR KOMPLEKSİ", "value": "wfme-12ae71e2-ee3e-4073-a439-da3517e74a50" },
@@ -72,10 +72,23 @@
 			{ "name": "KAPALI TENİS KORTU 4", "value": "eba78ea9-fc80-4648-9279-294e2c5cabde" },
 			{ "name": "KAPALI TENİS KORTU 5", "value": "12ccda58-ebf0-4f46-9c29-2af5f5af50d7" },
 			{ "name": "KAPALI TENİS KORTU 6", "value": "b0a3dfe6-40f7-4ec2-b7d1-977abd75ca3f" }
+		],
+		"6989b491-bb85-414a-b470-293b190ebb44": [
+			{ "name": "AÇIK TENİS KORTU", "value": "6c93b9bb-1560-4cba-926a-3632d69a05fd" },
+			{ "name": "KAPALI TENİS KORTU 1", "value": "f64f68a6-7779-4f25-91d2-d7ee7ccda42e" },
+			{ "name": "KAPALI TENİS KORTU 2", "value": "b3d358ee-c85b-4773-89b5-2dc14e5bcd5f" },
+			{ "name": "KAPALI TENİS KORTU 3", "value": "f21006a3-26d9-480f-aa96-16b45a39e335" },
+			{ "name": "KAPALI TENİS KORTU 4", "value": "88c91f40-ef33-42fc-a51f-9cf0e1912079" }
 		]
 	},
 	"field:5bdbe5f0-a06e-4243-b65d-231b3c2247ed": {
-		"27c1dfdb-866d-40e1-aec4-e079ddf715b7": [{ "name": "HALI SAHA 1", "value": "730b6f40-cd79-4af4-853c-acad66f706e3" }]
+		"27c1dfdb-866d-40e1-aec4-e079ddf715b7": [
+			{ "name": "HALI SAHA 1", "value": "730b6f40-cd79-4af4-853c-acad66f706e3" }
+		],
+		"6xqw-6989b491-bb85-414a-b470-293b190ebb44": [
+			{ "name": "HALI SAHA 1", "value": "ddc0e4eb-3d3a-4257-8ce8-57a0dffcb7e6" },
+			{ "name": "HALI SAHA 2", "value": "0543fbe8-9650-48dd-9d57-947899a2d0af" }
+		]
 	},
 	"field:b735aa4b-5923-4789-a04e-bf3e0b0a467c": {
 		"27c1dfdb-866d-40e1-aec4-e079ddf715b7": [

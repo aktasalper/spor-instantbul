@@ -49,13 +49,13 @@ export function ReservationPreferences() {
 							handleChange={(branch) => {
 								const availableFacilities: Array<ListOption> = options.facility[branch.value].filter((f) => !f.hidden);
 
-								const facility = availableFacilities[0];
+								const firstFacilityOption = availableFacilities[0];
 								const fieldScope = options[`field:${branch.value}`];
 
 								setPreferenceState({
 									branch,
-									facility,
-									field: fieldScope[facility.value][0]
+									facility: firstFacilityOption,
+									field: fieldScope[firstFacilityOption.value][0]
 								});
 							}}
 						/>
